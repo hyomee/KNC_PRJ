@@ -1,0 +1,83 @@
+# message_ko.yml
+V0001: 사용자 아이디 {0} 는 {2} 보다 크고 {1} 보다 작아야 합니다.
+NotEmpty.loginRequestDTO.id: User {0} is required
+
+
+
+NOMSG: "메세지 정의 필요 합니다."
+NOPAR: "메세지 파라 메터가 맞지 않습니다."
+AUTHO:
+  L0001: "접근 권한이 없습니다."
+  L0002: "인증이 필요합니다."
+ERROR:
+  E0001: "클래스 파일이 존재 하지 않습니다."
+  E0002: "존재 하지 않는 서비스(@)입니@ @다."
+SYSERROR:
+  ClassCastException:
+    CODE: "E0001"
+    MSG: "클래스 파일이 존재 하지 않습니다."
+  MissingServletRequestParameterException:
+    CODE: "E0002"
+    MSG: "요청한 파라메터가 없습니다."
+  Exception:
+    CODE: "E0003"
+    MSG: "서버에 오류가 있습니다."
+  NoHandlerFoundException:
+    CODE: "E0004"
+    MSG: "파일이 존재 하지 않습니다."
+  HttpMessageNotReadableException:
+    CODE: "E0005"
+    MSG: "알수 없은 url 입니다."
+  HttpRequestMethodNotSupportedException:
+    CODE: "E0006"
+    MSG: "잘못된 정보 입니다.( POST )"
+  SQLGrammarExceptionAdvice:
+    CODE: "E0007"
+    MSG: "쿼리가 잘못 되었습니다."
+  UnknownFormatConversionException:
+    CODE: "E0008"
+    MSG: "알수 없는 포맷 입니다."
+  NullPointerException:
+    CODE: "E0009"
+    MSG: "Null Pont 오류 "
+  UnrecognizedPropertyException:
+    CODE: "E0010"
+    MSG: "JSON 오류 [@]"
+  InternalServerError:
+    CODE: "E0011"
+    MSG: "시스템 내부 오류 입니다."
+SECURITY:
+  AccessDenie:
+    CODE: S0001
+    MSG: "접근 할 수 없습니다."
+  Authentication:
+    CODE: S0002
+    MSG: "인증 할 수 없습니다."
+  InvalidCredentials:
+    CODE: S0003
+    MSG: "자격 증명에 실패하였습니다."
+  InvalidAuthenticationRequest:
+    CODE: S0004
+    MSG: "잘못된 요청 정보 입니다."
+  InsufficientAuthenticationException:
+    CODE: S0005
+    MSG: "잘못된 요청 정보 입니다."
+VALID:
+  ISNULL:
+    CODE: V0001
+    MSG: @는 @값은 NULL을 허용 하지 않습니다.
+  ISREQUIED:
+    CODE: V0002
+    MSG: @는 @값은 필수 입니다.
+  MIN:
+    CODE: V0001
+    MSG: @는 @값은 @보다 커야 합니다.
+  MAX:
+    CODE: V0003
+    MSG: @는 @값은 @보다 작아야 합니다.
+  LENGTH:
+    CODE: V0004
+    MSG: @는 @값은 @이어야 합니다.
+  PATTERN:
+    CODE: V0005
+    MSG: @는 @값은 @정규식에 맞지 않습니다.

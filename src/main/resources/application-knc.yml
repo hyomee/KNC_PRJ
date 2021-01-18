@@ -1,0 +1,117 @@
+spring:
+  #  h2:
+  #    console:
+  #      enabled: true
+  #      path: /h2
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: wnKuNPSg3iLg4wFxi7a08E+QYwWPtrJJ2J3AIiwKbWOIJyudSvhKuj2cpj5jExta7+3Ne4JnLiCvBGGC20xSYA==
+    username: Ke6pFCT7K4kjYuMp4FMnng==
+    password: 2W4NvSXf4UpvgKrNZqNQPg==
+    hikari:
+      minimumIdle: 10
+      maximumPoolSize: 400
+      connectionTimeout: 30000
+      idleTimeout: 20000
+      maxLifetime: 58000
+      auto-commit: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+      ## create-drop, create, update, validate
+    show-sql: true
+    use_sql_comments: true
+    properties:
+      hibernate:
+        dialect : org.hibernate.dialect.MariaDB102Dialect
+        # org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  output:
+    ansi:
+      enabled: always
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /**
+    view:
+      suffix: .html
+  cache:
+    jcache:
+      config: classpath:/ehcache/ehcache.xml
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/
+      cache:
+        period: 0
+      add-mappings: true
+
+
+###### Tomcat Container 설정 ##############
+server:
+  port: 8081
+  servlet:
+    context-path: /
+    session:
+      timeout: 1m
+  tomcat:
+    uri-encoding: UTF-8
+    ## 가능한 모든 요청 처리 스레드가 사용 중일 때 들어오는 연결 요청의 최대 대기열 길이.
+    accept-count: 100
+    threads:
+      min-spare: 10
+      max: 500
+    connection-timeout: 30000
+    ## 서버가 주어진 시간에 서버가 수락하고 처리하는 최대 연결 수.
+    # User Define 으로 Spring boot 에서 기본 제공 되지 않는 것을 작성 한다.
+    # 정의 하지 않으면 기본적으로 설정이 되어 진다
+    # ACFW_BIZCOM을 pom.xml에 선언 하는 경우 사용
+    # kr.co.abacus.common.bizcom.spring.TomcatContainerConfig
+    httpProtocol:
+      maxKeepAliveRequests: 2000
+      tcpNoDelay: true
+      keepAliveTimeout: 2000
+    ajp:
+      port: 18009
+      secure: false
+      allowTrace: false
+      scheme: http
+      maxPostSize: -1
+      maxParameterCount: 100
+      enableLookups: false
+      redirectPort: 8443
+  error:
+    whitelabel:
+      enabled: true
+    include-exception: true
+    include-stacktrace: never # 오류 응답에 stacktrace 내용을 포함할 지 여부
+    path: '/error' # 오류 응답을 처리할 Handler의 경로
+
+management:
+  endpoints:
+    health:
+      show-details: always
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    cache:
+      instrument: true
+  ############## logging ##############
+  #logging:
+#  config: classpath:log4j/log4j2_local.xml
+
+############## log ##############
+log:
+  instanceName: kcm
+  instanceCode: '001'
+
+
+userDefine:
+  security:
+    mode: nopass

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+  <Properties>
+    <Property name="LOG_PATTERN" value="[%5p] [%d{yyyy-MM-dd HH:mm:ss}] [%C{6}] - %m%n"></Property>
+    <Property name="LOG_FILE_PATH">/logs/smartfarm/was</Property>
+    <Property name="INSTANCE_NAME">smartfarm</Property>
+  </Properties>
+  <Appenders>
+    <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+      <PatternLayout>
+        <MarkerPatternSelector defaultPattern="${LOG_PATTERN}">
+          <PatternMatch key="OMSCALLLOG" pattern="%m%n" />
+        </MarkerPatternSelector>
+      </PatternLayout>
+    </Console>
+
+    <RollingFile name="file" fileName="${LOG_FILE_PATH}/tomcat/smartfarm.log" filePattern="${LOG_FILE_PATH}/tomcat/smartfarm.log.%d{yyyyMMdd}/">
+      <PatternLayout>
+        <MarkerPatternSelector defaultPattern="${LOG_PATTERN}">
+          <PatternMatch key="OMSCALLLOG" pattern="%m%n" />
+        </MarkerPatternSelector>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+      </Policies>
+    </RollingFile>
+
+    <RollingRandomAccessFile name="CallLogAppender"
+                             fileName="${LOG_FILE_PATH}/calllog/calllog.log"
+                             filePattern="${LOG_FILE_PATH}/calllog/%d{yyyyMMdd}/${INSTANCE_NAME}.%03i.%d{yyyyMMddHHmm}.log"
+                             append="true" immediateFlush="false">
+      <PatternLayout pattern="%m%n"></PatternLayout>
+      <Policies>
+        <CronTriggeringPolicy schedule="0 0 * * * ?"></CronTriggeringPolicy>
+        <OnStartUpTriggeringPolicy minSize="0"></OnStartUpTriggeringPolicy>
+        <SizeBasedTriggeringPolicy size="100 MB"></SizeBasedTriggeringPolicy>
+      </Policies>
+      <DefaultRolloverStrategy max="100" />
+    </RollingRandomAccessFile>
+
+    <RollingRandomAccessFile name="OmsLogAppender"
+                             fileName="${LOG_FILE_PATH}/omslog/omslog.log"
+                             filePattern="${LOG_FILE_PATH}/omslog/%d{yyyyMMdd}/${INSTANCE_NAME}.%03i.%d{yyyyMMddHHmm}.log"
+                             append="true" immediateFlush="false">
+      <PatternLayout pattern="%m%n"></PatternLayout>
+      <Policies>
+
+        <CronTriggeringPolicy schedule="0 0/5 * * * ?"></CronTriggeringPolicy>
+        <OnStartUpTriggeringPolicy minSize="0"></OnStartUpTriggeringPolicy>
+        <SizeBasedTriggeringPolicy size="100 MB"></SizeBasedTriggeringPolicy>
+      </Policies>
+      <DefaultRolloverStrategy max="100" />
+    </RollingRandomAccessFile>
+
+    <RollingRandomAccessFile name="HangCheckAppender"
+                             fileName="${LOG_FILE_PATH}/hang/hang.log"
+                             filePattern="${LOG_FILE_PATH}/hang/%d{yyyyMMdd}/${INSTANCE_NAME}.%d{yyyyMMddHHmm}.log"
+                             append="true" immediateFlush="false">
+      <PatternLayout pattern="%m%n"></PatternLayout>
+      <Policies>
+        <CronTriggeringPolicy schedule="0 0/5 * * * ?"></CronTriggeringPolicy>
+        <OnStartUpTriggeringPolicy minSize="0"></OnStartUpTriggeringPolicy>
+      </Policies>
+    </RollingRandomAccessFile>
+
+  </Appenders>
+  <Loggers>
+    <Logger name="com.dkecofarm" level="DEBUG" additivity="false">
+      <AppenderRef ref="ConsoleAppender" />
+      <AppenderRef ref="file" />
+    </Logger>
+    <Logger name="icfwJdbcLog" level="DEBUG" additivity="false">
+      <AppenderRef ref="ConsoleAppender" />
+      <AppenderRef ref="file" />
+    </Logger>
+
+    <AsyncLogger name="kr.co.abacus.common.log.CallLogFileWriter" level="INFO" additivity="false">
+      <AppenderRef ref="CallLogAppender"></AppenderRef>
+    </AsyncLogger>
+
+    <AsyncLogger name="kr.co.abacus.common.log.OmsFileWriter" level="INFO" additivity="false">
+      <AppenderRef ref="OmsLogAppender"></AppenderRef>
+    </AsyncLogger>
+
+    <AsyncLogger name="kr.co.abacus.common.log.HangCheckFileWriter" level="INFO" additivity="false">
+      <AppenderRef ref="HangCheckAppender"></AppenderRef>
+    </AsyncLogger>
+
+    <Root level="DEBUG">
+      <AppenderRef ref="ConsoleAppender" />
+      <AppenderRef ref="file" />
+    </Root>
+  </Loggers>
+</Configuration>
