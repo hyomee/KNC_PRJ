@@ -1,0 +1,2 @@
+# knc
+KNC Solution
