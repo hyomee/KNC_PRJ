@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = {"com.dkecofarm.smartfarm.service.**.mapper"}, sqlSessionFactoryRef="sqlSessionFactory", sqlSessionTemplateRef="sqlSessionTemplate")
+@MapperScan(basePackages = {"co.kr.knc.online.**.mapper"}, sqlSessionFactoryRef="sqlSessionFactory", sqlSessionTemplateRef="sqlSessionTemplate")
 public class MyBatisConfig {
 
 
@@ -21,7 +21,7 @@ public class MyBatisConfig {
 
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     sqlSessionFactoryBean.setDataSource(dataSource);
-    sqlSessionFactoryBean.setTypeAliasesPackage("com.dkecofarm.smartfarm.service.**.dto");
+    sqlSessionFactoryBean.setTypeAliasesPackage("co.kr.knc.online.**.dto");
     sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:mybatis-config.xml"));
     sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:/mapper/**/*.xml"));
     return sqlSessionFactoryBean.getObject();
