@@ -12,11 +12,11 @@ public class EncryptTest {
 
   public static void main(String[] arg) throws Exception {
 
-    String url = "jdbc:mariadb://iabacus.asuscomm.com:20006/dkecofarm_farms";
+    String url = "jdbc:mariadb://iabacusxxxxxxx";
     String encurl = encAES1(url);
-    String id = "abacus";
+    String id = "xxxx";
     String encid = encAES1(id);
-    String pwd = "abacus2020!";
+    String pwd = "xxxxx!";
     String encpwd= encAES1(pwd);
 
     System.out.println(encurl);
@@ -28,11 +28,11 @@ public class EncryptTest {
     System.out.println(encpwd);
     System.out.println(decAES1(encpwd));
 
-    url = "jdbc:mariadb://211.239.124.246:24902/dkecofarm_farms";
+    url = "jdbc:mariadb://iabacusxxxxxxx";
     encurl = encAES1(url);
-    id = "dkfarms";
+    id = "xxxxx";
     encid = encAES1(id);
-    pwd = "P@dkfarms6811!";
+    pwd = "xxxxxx";
     encpwd= encAES1(pwd);
 
     System.out.println(encurl);
