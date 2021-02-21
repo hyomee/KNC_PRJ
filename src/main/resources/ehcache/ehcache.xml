@@ -26,7 +26,7 @@
 
         <listeners>
             <listener>
-                <class>co.kr.knc.core.config.cache.EhCacheEventLogger</class>
+                <class>com.knc.ntcs.core.config.cache.EhCacheEventLogger</class>
                 <event-firing-mode>ASYNCHRONOUS</event-firing-mode>
                 <event-ordering-mode>UNORDERED</event-ordering-mode>
                 <events-to-fire-on>CREATED</events-to-fire-on>

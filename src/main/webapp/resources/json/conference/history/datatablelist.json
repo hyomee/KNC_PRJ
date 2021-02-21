@@ -1,0 +1,24 @@
+{
+  "recordsTotal": 3,
+  "recordsFiltered": 3,
+  "data": [
+      {
+        "commonGroupCd":"서비스요금항목",
+        "commonCd":"201",
+        "commonCdNm":"웹캐스팅",
+        "codeDesc1":""
+      },
+      {
+        "commonGroupCd":"서비스요금항목",
+        "commonCd":"201",
+        "commonCdNm":"웹캐스팅",
+        "codeDesc1":""
+      },
+      {
+        "commonGroupCd":"서비스요금항목",
+        "commonCd":"201",
+        "commonCdNm":"웹캐스팅",
+        "codeDesc1":""
+      }
+  ]
+}

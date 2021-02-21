@@ -1,0 +1,26 @@
+{
+    "recordsTotal": 3,
+    "recordsFiltered": 3,
+	"data": [{
+		"langType":"KOR",
+        "commonGroupCd":"서비스요금항목",
+        "commonCd":"201",
+        "commonCdNm":"웹캐스팅1",
+        "codeDesc1":""
+      },
+      {
+      	"langType":"KOR",
+        "commonGroupCd":"서비스요금항목",
+        "commonCd":"202",
+        "commonCdNm":"웹캐스팅2",
+        "codeDesc1":""
+      },
+      {
+      	"langType":"KOR",
+        "commonGroupCd":"서비스요금항목",
+        "commonCd":"203",
+        "commonCdNm":"웹캐스팅3",
+        "codeDesc1":"웹캐스팅"
+      }
+	]
+}

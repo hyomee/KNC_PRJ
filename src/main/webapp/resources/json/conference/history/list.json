@@ -1,0 +1,111 @@
+{
+	"data": [{
+			"svcConfCate": "2020-12-01",
+			"svcResvRd": "C4758392",
+			"attendName": "삼성",
+			"memberId": "이승엽",
+			"svcName": "7888581",
+			"svcConfCime": "35.5",
+			"svcConfCuration": "149",
+			"svcConfMaxCarties": "28.8",
+			"svcConfCarties": "23.9",
+			"svcConfCpdate": "0.6"
+		},
+		{
+			"svcConfCate": "2020-12-01",
+			"svcResvRd": "C4758393",
+			"attendName": "기아",
+			"memberId": "이종범",
+			"svcName": "240039",
+			"svcConfCime": "1.1",
+			"svcConfCuration": "1373",
+			"svcConfMaxCarties": "1.1",
+			"svcConfCarties": "0.6",
+			"svcConfCpdate": "5.2"
+		},
+		{
+			"svcConfCate": "2020-12-01",
+			"svcResvRd": "C4758394",
+			"attendName": "한화",
+			"memberId": "구대성",
+			"svcName": "3546843",
+			"svcConfCime": "15.9",
+			"svcConfCuration": "3753",
+			"svcConfMaxCarties": "9",
+			"svcConfCarties": "8.2",
+			"svcConfCpdate": "14.2"
+		},
+		{
+			"svcConfCate": "2020-12-01",
+			"svcResvRd": "C4758396",
+			"attendName": "롯데",
+			"memberId": "최동원",
+			"svcName": "1643800",
+			"svcConfCime": "7.4",
+			"svcConfCuration": "43",
+			"svcConfMaxCarties": "16.3",
+			"svcConfCarties": "23.8",
+			"svcConfCpdate": "0.2"
+		},
+		{
+			"svcConfCate": "2020-12-01",
+			"svcResvRd": "C4758399",
+			"attendName": "LG",
+			"memberId": "이상훈",
+			"svcName": "3400292",
+			"svcConfCime": "15.3",
+			"svcConfCuration": "2254",
+			"svcConfMaxCarties": "16.5",
+			"svcConfCarties": "22.9",
+			"svcConfCpdate": "8.5"
+		},
+		{
+			"svcConfCate": "2020-12-01",
+			"svcResvRd": "C4758355",
+			"attendName": "두산",
+			"memberId": "박철순",
+			"svcName": "1717900",
+			"svcConfCime": "7.7",
+			"svcConfCuration": "4868",
+			"svcConfMaxCarties": "7.4",
+			"svcConfCarties": "7",
+			"svcConfCpdate": "18.4"
+		},
+		{
+			"svcConfCate": "2020-12-01",
+			"svcResvRd": "C4758492",
+			"attendName": "SK",
+			"memberId": "김원형",
+			"svcName": "3285460",
+			"svcConfCime": "14.8",
+			"svcConfCuration": "11356",
+			"svcConfMaxCarties": "17.5",
+			"svcConfCarties": "9.6",
+			"svcConfCpdate": "42.8"
+		},
+		{
+			"svcConfCate": "2020-12-01",
+			"svcResvRd": "C4758345",
+			"attendName": "KT",
+			"memberId": "이대은",
+			"svcName": "525204",
+			"svcConfCime": "2.4",
+			"svcConfCuration": "2709",
+			"svcConfMaxCarties": "3.4",
+			"svcConfCarties": "4",
+			"svcConfCpdate": "10.2"
+		},
+		{
+			"svcConfCate": "2020-12-01",
+			"svcResvRd": "C4758999",
+			"attendName": "NC",
+			"memberId": "나성범",
+			"svcName": "22248119",
+			"svcConfCime": "100",
+			"svcConfCuration": "26505",
+			"svcConfMaxCarties": "100",
+			"svcConfCarties": "100",
+			"svcConfCpdate": "100"
+		}
+	]
+}

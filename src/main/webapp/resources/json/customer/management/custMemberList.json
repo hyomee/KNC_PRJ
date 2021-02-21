@@ -1,0 +1,29 @@
+{
+	"data": [{
+			"memberId" : "111",
+			"custId" : "222",
+			"groupId" : "333",
+			"memberName" : "박세0",
+			"mtelNo" : "010-1234-5667",
+			"email" : "park.dh@gmail.com",
+			"memberRole" : "준회원",
+			"memberYn" : "Y",
+			"operatorId" : " ",
+			"creationDate" : "2021-02-01",
+			"updateDate" : "9999-12-31"
+		},
+		{
+			"memberId" : "112",
+			"custId" : "113",
+			"groupId" : "444",
+			"memberName" : "조현1",
+			"mtelNo" : "010-552-3132",
+			"email" : "cho@gmail.com",
+			"memberRole" : "정회원",
+			"memberYn" : "Y",
+			"operatorId" : " ",
+			"creationDate" : "2021-01-01",
+			"updateDate" : "4999-12-31"
+		}	
+	]
+}

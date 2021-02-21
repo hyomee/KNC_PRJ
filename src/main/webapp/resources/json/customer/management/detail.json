@@ -1,0 +1,139 @@
+{
+	"info": {
+			"custId" : "CUST010",
+			"usrId" : "USER001",
+			"custName" : "콜투게더",
+			"custType" : "법인",
+			"custClass" : "기업",
+			"corpRegNo" : "12345-12345",
+			"bizRegNo" : "123-45-67890",
+			"taxFlag" : "1",
+			"zipCd" : "15000",
+			"baseAddr" : " ",
+			"dtlAddr" : " ",
+			"telNo" : "02-1234-5678",
+			"faxNo" : "02-1234-5679",
+			"mtelNo" : "010-1234-6789",
+			"email" : "bug70@gmail.com",
+			"repName" : "홍길동",
+			"bizCond" : " ",
+			"bizType" : " ",
+			"extId" : " ",
+			"valdStrtDttm" : "2020-01-01",
+			"valdEndDttm" : " ",
+			"operatorId" : " ",
+			"creationDate" : "2020-01-01",
+			"updateDate" : " "			
+	},
+	"billInfo": {
+		"billAcntNo" : " ",
+		"custId" : " ",
+		"billCyclCd" : " ",
+		"billAcntSttsCd" : " ",
+		"billCurCd" : " ",
+		"exrateRfctDd" : " ",
+		"bltxtKdCd" : " ",
+		"bltxtRcptName" : " ",
+		"bltxtEmail" : "lbj@gmail.com",
+		"bltxtMtelNo" : " ",
+		"bltxtZipCd" : " ",
+		"bltxtBaseAddr" : " ",
+		"bltxtDtlAddr" : " ",
+		"bltxtFaxNo" : " ",
+		"taxInvoiceFlag" : " ",
+		"taxFlag" : " ",
+		"pymAcntNo" : " ",
+		"pymName" : " ",
+		"pymDd" : " ",
+		"pymKdCd" : " ",
+		"pymBankCd" : " ",
+		"pymCardCd" : " ",
+		"pymOwnerName" : " ",
+		"pymAccuntNo" : " ",
+		"pymExpDt" : " ",
+		"pymVrAcnt" : " ",
+		"operatorId" : " "
+	},
+	"custMemberList" : [
+		{
+			"memberId" : "111",
+			"custId" : "222",
+			"groupId" : "333",
+			"memberName" : "박세운",
+			"mtelNo" : "010-1234-5667",
+			"email" : "park.dh@gmail.com",
+			"memberRole" : "준회원",
+			"memberYn" : "Y",
+			"operatorId" : " ",
+			"creationDate" : "2021-02-01",
+			"updateDate" : "9999-12-31"
+		},
+		{
+			"memberId" : "112",
+			"custId" : "113",
+			"groupId" : "444",
+			"memberName" : "조현일1",
+			"mtelNo" : "010-552-3132",
+			"email" : "cho@gmail.com",
+			"memberRole" : "정회원",
+			"memberYn" : "Y",
+			"operatorId" : " ",
+			"creationDate" : "2021-01-01",
+			"updateDate" : "4999-12-31"
+		}					
+	],
+	"dnisList" : [{
+			"dnis" : "0021",
+			"fullTelNo" : "01012521251",
+			"prefixNo" : "010",
+			"pofn" : " ",
+			"lineNo" : " ",
+			"dnisStatus" : "0",
+			"operatorId" : " ",
+			"creationDate" : " ",
+			"updateDate" : " "
+		},
+		{ 
+			"dnis" : "0025",
+			"fullTelNo" : "1352012361",
+			"prefixNo" : "135",
+			"pofn" : " ",
+			"lineNo" : " ",
+			"dnisStatus" : "2",
+			"operatorId" : " ",
+			"creationDate" : "",
+			"updateDate" : " "
+		}	
+	],
+	"options":
+	  {
+	    "users.site":
+	    [
+	      {
+	        "label": "Edinburgh",
+	        "value": "1"
+	      },
+	      {
+	        "label": "London",
+	        "value": "2"
+	      },
+	      {
+	        "label": "Los Angeles",
+	        "value": "6"
+	      },
+	      {
+	        "label": "New York",
+	        "value": "4"
+	      },
+	      {
+	        "label": "Paris",
+	        "value": "3"
+	      },
+	      {
+	        "label": "Singapore",
+	        "value": "5"
+	      }
+	    ]	
+	 }
+}
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/views">
+
+    <excludes>
+        <pattern>**/*.htm</pattern>
+        <pattern>**/*.html</pattern>
+        <pattern>**/*.jsp</pattern>
+        <pattern>/login*</pattern>
+        <pattern>/popup/*</pattern>
+    </excludes>
+    
+    <decorator name="login" page="/WEB-INF/views/login.jsp">
+       <pattern>/login</pattern>  
+    </decorator>  
+
+    <decorator name="top" page="/WEB-INF/views/layout/top.jsp" />
+    <decorator name="left" page="/WEB-INF/views/layout/left.jsp" />
+    <decorator name="contents" page="/WEB-INF/views/layout/contents.jsp" />
+	
+    <decorator name="layout" page="/WEB-INF/views/layout/layout.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+   
+    
+</decorators>

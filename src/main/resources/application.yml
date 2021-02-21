@@ -3,6 +3,35 @@
 ###  기본 구성
 ########################################
 spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: sx2Bs2Jwso/Ped2OKq0iAPgWoOsKNfLBXm/GHRj7uW4Bc+kTDmIsai/otKvRzEBM
+    username: 7gbPHXXFkqsRKcT0zPykzw==
+    password: M0AMSuOCy5TnuZAwSqg/NA==
+    hikari:
+      minimumIdle: 10
+      maximumPoolSize: 400
+      connectionTimeout: 30000
+      idleTimeout: 20000
+      maxLifetime: 58000
+      auto-commit: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+      ## create-drop, create, update, validate
+    show-sql: true
+    use_sql_comments: true
+    properties:
+      hibernate:
+        dialect : org.hibernate.dialect.MariaDB102Dialect
+        # org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
   output:
     ansi:
       enabled: always
@@ -25,19 +54,34 @@ spring:
       enabled: true
       ## 운영에서는 false
     ##open-in-view=false: true
-
-
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /**
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  cache:
+    jcache:
+      config: classpath:/ehcache/ehcache.xml
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/
+      cache:
+        period: 0
+      add-mappings: true
+      
 logging:
   level:
     debug: false
     root: info
     org.springframework.security: debug
     com.zaxxer.hikari: INFO
-    co.kr.knc: DEBUG
+    com.knc: DEBUG
     org.hibernate.type.descriptor.sql: trace
     org.springframework.web: error
     org.springframework.security.web: DEBUG
-    co.kr.knc.common.error: trace
+    com.knc.common.error: trace
     org.mybatis.spring: DEBUG
     org.apache.ibatis: DEBUG
 
@@ -51,11 +95,18 @@ security:
 
 ##################################################
 # 에러 나는 경우
+  ############## logging ##############
+  #logging:
+#  config: classpath:log4j/log4j2_local.xml
+
+############## log ##############
 log:
   error:
     fillInStackTrace: true
     printStackTrace: true
   ruledebug: N
+  instanceName: kcm
+  instanceCode: '001'
 
 ########################################
 ###  mybatis
@@ -68,9 +119,59 @@ log:
 #    map-underscore-to-camel-case: on
 
 server:
+  port : 8083
   servlet:
+    context-path: /
+    session:
+      timeout: 1m
     encoding:
       charset: UTF-8
       enabled: true
       force: true
-
+  tomcat:
+    uri-encoding: UTF-8
+    ## 가능한 모든 요청 처리 스레드가 사용 중일 때 들어오는 연결 요청의 최대 대기열 길이.
+    accept-count: 100
+    threads:
+      min-spare: 10
+      max: 500
+    connection-timeout: 30000
+    ## 서버가 주어진 시간에 서버가 수락하고 처리하는 최대 연결 수.
+    # User Define 으로 Spring boot 에서 기본 제공 되지 않는 것을 작성 한다.
+    # 정의 하지 않으면 기본적으로 설정이 되어 진다
+    # ACFW_BIZCOM을 pom.xml에 선언 하는 경우 사용
+    # kr.co.abacus.common.bizcom.spring.TomcatContainerConfig
+    httpProtocol:
+      maxKeepAliveRequests: 2000
+      tcpNoDelay: true
+      keepAliveTimeout: 2000
+    ajp:
+      port: 18009
+      secure: false
+      allowTrace: false
+      scheme: http
+      maxPostSize: -1
+      maxParameterCount: 100
+      enableLookups: false
+      redirectPort: 8443
+  error:
+    whitelabel:
+      enabled: true
+    include-exception: true
+    include-stacktrace: never # 오류 응답에 stacktrace 내용을 포함할 지 여부
+    path: '/error' # 오류 응답을 처리할 Handler의 경로
+    
+management:
+  endpoints:
+    health:
+      show-details: always
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    cache:
+      instrument: true
+      
+userDefine:
+  security:
+    mode: nopass     

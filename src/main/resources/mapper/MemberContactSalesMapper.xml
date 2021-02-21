@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.knc.ntcs.web.member.contactsales.mapper.MemberContactSalesMapper">
+
+	<select id="selectTableList" parameterType="hashmap" resultType="hashmap">
+		select 1 as COLUMN_NAME, 'USR_ID' as COLUMN_NAME from dual
+		union all
+		select 2 as COLUMN_NAME, 'USR_PASSWORD' as COLUMN_NAME from dual
+		union all
+		select 3 as COLUMN_NAME, 'USR_TYPE' as COLUMN_NAME from dual	
+		
+	</select>
+</mapper> 
