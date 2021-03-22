@@ -1,4 +1,4 @@
-package ntcs.core.common.utils.reponse;
+package com.knc.ntcs.core.common.utils.reponse;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;

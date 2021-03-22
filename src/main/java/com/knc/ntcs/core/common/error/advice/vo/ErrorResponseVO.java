@@ -1,4 +1,4 @@
-package ntcs.core.common.error.advice.vo;
+package com.knc.ntcs.core.common.error.advice.vo;
 
 import com.knc.ntcs.core.common.constant.DkHttpStatus;
 import lombok.Builder;

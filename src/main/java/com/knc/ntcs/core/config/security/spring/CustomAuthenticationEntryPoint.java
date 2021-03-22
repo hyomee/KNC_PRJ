@@ -1,4 +1,4 @@
-package ntcs.core.config.security.spring;
+package com.knc.ntcs.core.config.security.spring;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

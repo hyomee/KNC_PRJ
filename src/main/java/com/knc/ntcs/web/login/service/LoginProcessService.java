@@ -1,4 +1,4 @@
-package ntcs.web.login.service;
+package com.knc.ntcs.web.login.service;
 
 
 import com.knc.ntcs.core.common.dto.ComInfoDTO;

@@ -1,4 +1,4 @@
-package ntcs.web.login.dto;
+package com.knc.ntcs.web.login.dto;
 
 import lombok.Builder;
 import lombok.Getter;

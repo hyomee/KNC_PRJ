@@ -1,4 +1,4 @@
-package ntcs.core.common.utils;
+package com.knc.ntcs.core.common.utils;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

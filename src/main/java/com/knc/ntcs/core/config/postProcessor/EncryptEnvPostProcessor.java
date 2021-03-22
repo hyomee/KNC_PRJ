@@ -1,4 +1,4 @@
-package ntcs.core.config.postProcessor;
+package com.knc.ntcs.core.config.postProcessor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;

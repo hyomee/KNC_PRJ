@@ -1,4 +1,4 @@
-package ntcs.core.config.message;
+package com.knc.ntcs.core.config.message;
 
 import net.rakugakibox.util.YamlResourceBundle;
 import org.springframework.beans.factory.annotation.Value;

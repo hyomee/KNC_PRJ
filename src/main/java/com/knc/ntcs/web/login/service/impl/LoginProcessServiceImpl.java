@@ -1,4 +1,4 @@
-package ntcs.web.login.service.impl;
+package com.knc.ntcs.web.login.service.impl;
 
 
 import com.auth0.jwt.JWT;

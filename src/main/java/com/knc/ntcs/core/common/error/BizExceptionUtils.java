@@ -1,4 +1,4 @@
-package ntcs.core.common.error;
+package com.knc.ntcs.core.common.error;
 
 import com.knc.ntcs.core.common.constant.ErrorConstant;
 import com.knc.ntcs.core.common.dto.CustomMessageDTO;

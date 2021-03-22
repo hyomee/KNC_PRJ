@@ -1,4 +1,4 @@
-package ntcs.web.customer.rate.controller;
+package com.knc.ntcs.web.customer.rate.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

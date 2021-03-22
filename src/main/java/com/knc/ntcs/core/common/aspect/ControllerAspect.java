@@ -1,4 +1,4 @@
-package ntcs.core.common.aspect;
+package com.knc.ntcs.core.common.aspect;
 
 import java.util.Enumeration;
 import java.util.LinkedHashMap;

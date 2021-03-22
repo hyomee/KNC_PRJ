@@ -1,4 +1,4 @@
-package ntcs.core.common.constant;
+package com.knc.ntcs.core.common.constant;
 
 public class ErrorConstant {
 

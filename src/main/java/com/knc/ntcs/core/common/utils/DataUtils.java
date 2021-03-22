@@ -1,4 +1,4 @@
-package ntcs.core.common.utils;
+package com.knc.ntcs.core.common.utils;
 
 public class DataUtils {
 

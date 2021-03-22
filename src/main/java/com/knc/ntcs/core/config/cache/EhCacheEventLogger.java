@@ -1,4 +1,4 @@
-package ntcs.core.config.cache;
+package com.knc.ntcs.core.config.cache;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ehcache.event.CacheEvent;

@@ -1,4 +1,4 @@
-package ntcs.core.config.security.spring.dto;
+package com.knc.ntcs.core.config.security.spring.dto;
 
 import java.io.Serializable;
 

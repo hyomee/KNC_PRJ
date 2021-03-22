@@ -1,4 +1,4 @@
-package ntcs.web.management.billitem.controller;
+package com.knc.ntcs.web.management.billitem.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

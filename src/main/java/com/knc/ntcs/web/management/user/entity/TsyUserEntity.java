@@ -1,4 +1,4 @@
-package ntcs.web.management.user.entity;
+package com.knc.ntcs.web.management.user.entity;
 
 import com.knc.ntcs.core.common.dto.ControllFieldDTO;
 import com.knc.ntcs.core.common.entity.ControllField;

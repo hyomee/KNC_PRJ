@@ -1,4 +1,4 @@
-package ntcs.web.bill.hotbill.controller;
+package com.knc.ntcs.web.bill.hotbill.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package ntcs.web.login.controller;
+package com.knc.ntcs.web.login.controller;
 
 
 import javax.servlet.http.HttpServletRequest;

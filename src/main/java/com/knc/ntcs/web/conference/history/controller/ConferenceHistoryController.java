@@ -1,4 +1,4 @@
-package ntcs.web.conference.history.controller;
+package com.knc.ntcs.web.conference.history.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

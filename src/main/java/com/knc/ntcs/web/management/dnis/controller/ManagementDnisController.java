@@ -1,4 +1,4 @@
-package ntcs.web.management.dnis.controller;
+package com.knc.ntcs.web.management.dnis.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

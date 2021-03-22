@@ -1,4 +1,4 @@
-package ntcs.core.common.error.advice.exception;
+package com.knc.ntcs.core.common.error.advice.exception;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

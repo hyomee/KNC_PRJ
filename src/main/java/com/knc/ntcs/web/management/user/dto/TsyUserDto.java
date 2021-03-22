@@ -1,4 +1,4 @@
-package ntcs.web.management.user.dto;
+package com.knc.ntcs.web.management.user.dto;
 
 
 import lombok.*;

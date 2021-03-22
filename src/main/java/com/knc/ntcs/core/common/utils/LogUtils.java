@@ -1,4 +1,4 @@
-package ntcs.core.common.utils;
+package com.knc.ntcs.core.common.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

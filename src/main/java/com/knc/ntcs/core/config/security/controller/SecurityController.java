@@ -1,4 +1,4 @@
-package ntcs.core.config.security.controller;
+package com.knc.ntcs.core.config.security.controller;
 
 import com.knc.ntcs.core.common.dto.ComInfoDTO;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

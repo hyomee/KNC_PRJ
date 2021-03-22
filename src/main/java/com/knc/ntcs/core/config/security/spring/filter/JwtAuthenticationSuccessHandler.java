@@ -1,4 +1,4 @@
-package ntcs.core.config.security.spring.filter;
+package com.knc.ntcs.core.config.security.spring.filter;
 
 
 import com.auth0.jwt.JWT;

@@ -1,4 +1,4 @@
-package ntcs.web.member.contactsales.controller;
+package com.knc.ntcs.web.member.contactsales.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

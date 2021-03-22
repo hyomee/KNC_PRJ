@@ -1,4 +1,4 @@
-package ntcs.core.common.entity;
+package com.knc.ntcs.core.common.entity;
 
 
 import javax.persistence.Column;

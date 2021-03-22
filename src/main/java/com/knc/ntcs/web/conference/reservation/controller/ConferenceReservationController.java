@@ -1,4 +1,4 @@
-package ntcs.web.conference.reservation.controller;
+package com.knc.ntcs.web.conference.reservation.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

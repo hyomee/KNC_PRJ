@@ -1,4 +1,4 @@
-package ntcs.web.management.code.controller;
+package com.knc.ntcs.web.management.code.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;

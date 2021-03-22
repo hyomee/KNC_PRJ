@@ -1,4 +1,4 @@
-package ntcs.core.common.dto;
+package com.knc.ntcs.core.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

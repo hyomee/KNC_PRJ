@@ -1,4 +1,4 @@
-package ntcs.core.common.utils;
+package com.knc.ntcs.core.common.utils;
 
 import java.util.ArrayList;
 import java.util.List;

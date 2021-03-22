@@ -1,4 +1,4 @@
-package ntcs.core.config.tomcat;
+package com.knc.ntcs.core.config.tomcat;
 
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.http11.AbstractHttp11Protocol;

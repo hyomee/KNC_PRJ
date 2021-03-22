@@ -1,4 +1,4 @@
-package ntcs.core.common.dto;
+package com.knc.ntcs.core.common.dto;
 
 import lombok.Builder;
 import lombok.Getter;

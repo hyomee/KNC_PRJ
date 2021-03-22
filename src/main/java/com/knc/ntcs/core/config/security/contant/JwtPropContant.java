@@ -1,4 +1,4 @@
-package ntcs.core.config.security.contant;
+package com.knc.ntcs.core.config.security.contant;
 
 public class JwtPropContant {
   public final static String SECRET = "knc"; // 우리 서버만 알고 있는 비밀값

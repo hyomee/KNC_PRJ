@@ -1,4 +1,4 @@
-package ntcs.core.config.security.service;
+package com.knc.ntcs.core.config.security.service;
 
 import com.knc.ntcs.core.config.security.spring.dto.JwtUserVO;
 

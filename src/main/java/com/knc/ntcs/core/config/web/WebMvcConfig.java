@@ -1,4 +1,4 @@
-package ntcs.core.config.web;
+package com.knc.ntcs.core.config.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

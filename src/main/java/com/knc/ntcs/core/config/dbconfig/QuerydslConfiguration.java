@@ -1,4 +1,4 @@
-package ntcs.core.config.dbconfig;
+package com.knc.ntcs.core.config.dbconfig;
 
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;

@@ -1,4 +1,4 @@
-package ntcs.web.management.user.respository;
+package com.knc.ntcs.web.management.user.respository;
 
 
 import com.knc.ntcs.web.login.dto.LoginRequestDTO;

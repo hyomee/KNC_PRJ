@@ -1,4 +1,4 @@
-package ntcs.core.common.utils;
+package com.knc.ntcs.core.common.utils;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

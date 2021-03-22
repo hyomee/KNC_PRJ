@@ -1,4 +1,4 @@
-package ntcs.web.customer.service.controller;
+package com.knc.ntcs.web.customer.service.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

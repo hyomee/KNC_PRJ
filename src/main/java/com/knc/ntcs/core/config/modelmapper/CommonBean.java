@@ -1,4 +1,4 @@
-package ntcs.core.config.modelmapper;
+package com.knc.ntcs.core.config.modelmapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;

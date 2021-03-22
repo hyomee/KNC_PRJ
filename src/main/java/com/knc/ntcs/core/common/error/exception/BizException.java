@@ -1,4 +1,4 @@
-package ntcs.core.common.error.exception;
+package com.knc.ntcs.core.common.error.exception;
 
 import com.knc.ntcs.core.common.constant.ComConstant;
 import lombok.Getter;

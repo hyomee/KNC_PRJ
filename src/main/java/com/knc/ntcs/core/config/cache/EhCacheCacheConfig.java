@@ -1,4 +1,4 @@
-package ntcs.core.config.cache;
+package com.knc.ntcs.core.config.cache;
 
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;

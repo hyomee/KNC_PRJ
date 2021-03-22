@@ -1,4 +1,4 @@
-package ntcs.core.config.test;
+package com.knc.ntcs.core.config.test;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;

@@ -1,4 +1,4 @@
-package ntcs.web.member.management.dto;
+package com.knc.ntcs.web.member.management.dto;
 
 import org.apache.ibatis.type.Alias;
 

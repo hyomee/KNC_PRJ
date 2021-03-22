@@ -1,4 +1,4 @@
-package ntcs.core.common.utils.reponse;
+package com.knc.ntcs.core.common.utils.reponse;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;

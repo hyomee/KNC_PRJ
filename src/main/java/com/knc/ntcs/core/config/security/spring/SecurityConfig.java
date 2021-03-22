@@ -1,4 +1,4 @@
-package ntcs.core.config.security.spring;
+package com.knc.ntcs.core.config.security.spring;
 
 import com.knc.ntcs.core.config.security.service.UserFindService;
 import com.knc.ntcs.core.config.security.spring.filter.JwtAuthenticationFailureHandler;

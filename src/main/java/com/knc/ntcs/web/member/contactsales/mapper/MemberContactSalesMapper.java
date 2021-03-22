@@ -1,4 +1,4 @@
-package ntcs.web.member.contactsales.mapper;
+package com.knc.ntcs.web.member.contactsales.mapper;
 
 import java.util.List;
 import java.util.Map;

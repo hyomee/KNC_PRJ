@@ -1,4 +1,4 @@
-package ntcs.web.management.user.controller;
+package com.knc.ntcs.web.management.user.controller;
 
 import com.knc.ntcs.core.common.dto.ComInfoDTO;
 import com.knc.ntcs.core.common.utils.ResponseUtils;

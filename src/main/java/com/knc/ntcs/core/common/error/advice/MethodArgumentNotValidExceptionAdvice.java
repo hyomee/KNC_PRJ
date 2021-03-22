@@ -1,4 +1,4 @@
-package ntcs.core.common.error.advice;
+package com.knc.ntcs.core.common.error.advice;
 
 import com.knc.ntcs.core.common.constant.DkHttpStatus;
 import com.knc.ntcs.core.common.dto.ErrorMsgDTO;

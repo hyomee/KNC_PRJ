@@ -1,4 +1,4 @@
-package ntcs.core.config.dbconfig;
+package com.knc.ntcs.core.config.dbconfig;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
