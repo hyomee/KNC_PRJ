@@ -26,7 +26,7 @@ import java.util.HashMap;
 @Service
 public class LoginProcessServiceImpl implements LoginProcessService {
 
-  private TsyUserService tsyUserService;
+  private final TsyUserService tsyUserService;
   /**
    * 로그인 처리
    * @param loginRequestDTO
@@ -39,7 +39,7 @@ public class LoginProcessServiceImpl implements LoginProcessService {
     RequestUtils.printRchRequestHeader();
     TsyUserDto tsyUserDto = tsyUserService.loginProcess(loginRequestDTO, comInfoDTO);
     LoginResponseDTO loginResponseDTO = null;
-    if (StringUtils.isEmpty(tsyUserDto.getUserId())) {
+    if (!StringUtils.isEmpty(tsyUserDto.getUserId())) {
       String jwtToken = JWT.create()
               .withSubject(tsyUserDto.getUserName())
               .withExpiresAt(new Date(System.currentTimeMillis()+ JwtPropContant.EXPIRATION_TIME))
@@ -51,6 +51,7 @@ public class LoginProcessServiceImpl implements LoginProcessService {
       log.debug("===== 6. successfulAuthentication token :: " + JwtPropContant.TOKEN_PREFIX+jwtToken);
       HashMap rsn = new HashMap();
       rsn.put("token", JwtPropContant.TOKEN_PREFIX+jwtToken);
+      loginResponseDTO = LoginResponseDTO.builder().authToken(JwtPropContant.TOKEN_PREFIX+jwtToken).build();
     }
 
     

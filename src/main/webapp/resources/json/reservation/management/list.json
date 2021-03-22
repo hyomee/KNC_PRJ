@@ -1,0 +1,41 @@
+{
+	"messageBody": {
+	
+	    "recordsTotal": 2,
+	    "recordsFiltered": 2,
+		"data": [
+	      {
+			"svcSeqNo":"123456",
+			"svcName":"프로젝트 이슈회의",
+	        "svcAcntNo":"5010",
+	        "svcReqType":"2",
+	        "svcReqTypeNm":"Passcode Meet",
+	        "svcConfDate":"2021-01-02",
+	        "svcConfTime":"14:00",
+	        "svcConfDuration":"60",
+	        "svcConfParties":"5",
+	        "svcConfCd":"56781234",
+	        "billCode":"C-234567",
+	        "svcAutoBreakDown":"자동종료",
+	        "svcAlertOptions":"1"
+	      },
+	      {
+			"svcSeqNo":"123458",
+			"svcName":"프로젝트 이슈회의",
+	        "svcAcntNo":"5012",
+	        "svcReqType":"2",
+	        "svcReqTypeNm":"Passcode Meet",
+	        "svcConfDate":"2021-01-05",
+	        "svcConfTime":"14:00",
+	        "svcConfDuration":"60",
+	        "svcConfParties":"5",
+	        "svcConfCd":"56781234",
+	        "billCode":"C-234567",
+	        "svcAutoBreakDown":"자동종료",
+	        "svcAlertOptions":"2"
+	      }
+		]
+	}
+}
+
+		           

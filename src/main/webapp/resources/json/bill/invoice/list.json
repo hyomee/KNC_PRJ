@@ -1,0 +1,32 @@
+{
+	"messageBody": {
+	
+	    "recordsTotal": 2,
+	    "recordsFiltered": 2,
+		"data": [{
+			"column1":"2021-01",
+			"column2":"150000",
+			"column3":"30000",
+	        "column4":"0",
+	        "column5":"0",
+	        "column6":"120000",
+	        "column7":"12000",
+	        "column8":"132000",
+	        "column9":"132000",
+	        "column10":"0"
+	      }, {
+			"column1":"2021-02",
+			"column2":"150000",
+			"column3":"30000",
+	        "column4":"0",
+	        "column5":"0",
+	        "column6":"120000",
+	        "column7":"12000",
+	        "column8":"132000",
+	        "column9":"130000",
+	        "column10":"2000"
+	      }    
+		]	
+	}
+} 
+ 

@@ -4,6 +4,8 @@ package com.knc.ntcs.web.login.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.knc.ntcs.core.config.restTemplate.KncRestTemplate;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,14 +22,18 @@ import com.knc.ntcs.web.login.service.LoginProcessService;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.HashMap;
+
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(value="/login")
 public class LoginController {
 
 
-  private LoginProcessService loginProcessService;
+  private final LoginProcessService loginProcessService;
+  private final KncRestTemplate kncRestTemplate;
 	 
 	@GetMapping(value = "")
 	public ModelAndView main() {
@@ -44,11 +50,24 @@ public class LoginController {
    * @return
    */
   @PostMapping(value = "/loginProcess", headers = "X_APPLICATION=v1")
-  public ResponseEntity<Object> insertDkTagSet(HttpServletRequest request,
+  public ResponseEntity<Object> loginProcess(HttpServletRequest request,
                                                @Valid @RequestBody LoginRequestDTO loginRequestDTO,
                                                ComInfoDTO comInfoDTO)  {
 	  
     LoginResponseDTO loginResponseDTO = loginProcessService.loginProcess(loginRequestDTO, comInfoDTO);
+
+
+    return ResponseUtils.completed( loginResponseDTO, comInfoDTO);
+  }
+
+  @PostMapping(value = "/restTest", headers = "X_APPLICATION=v1")
+  public ResponseEntity<Object> restTest(HttpServletRequest request,
+                                             @Valid @RequestBody LoginResponseDTO loginResponseDTO,
+                                             ComInfoDTO comInfoDTO)  {
+
+    log.debug("restTest :: " + loginResponseDTO.toString()) ;
+
+
     return ResponseUtils.completed( loginResponseDTO, comInfoDTO);
   }
 

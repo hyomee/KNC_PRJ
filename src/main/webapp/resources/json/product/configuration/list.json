@@ -1,0 +1,17 @@
+{
+	"messageBody": {
+	
+	    "recordsTotal": 1,
+	    "recordsFiltered": 1,
+		"data": [
+	      {
+			"ftrCd":"1",
+			"ftrNm":"기본료",
+	        "initRateAplyUnitCd":"1",
+	        "initRateAplyUnitNm":"월",
+	        "initRateAplyUnit":"분",
+	        "initRate":"1000000"
+	      }
+		]
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"messageBody": {
+	
+	    "recordsTotal": 2,
+	    "recordsFiltered": 2,
+		"data": [{
+			"dnis":"1100",
+	        "areaNo":"032",
+	        "prefixNo":"223",
+	        "lineNo":"1215",
+	        "fullTelNo":"032-223-1215",
+	        "dnisStatus":"1",
+	        "dnisStatusNm":"사용"
+	      },
+	      {
+			"dnis":"1101",
+	        "areaNo":"031", 
+	        "prefixNo":"223",
+	        "lineNo":"5678",
+	        "fullTelNo":"031-223-5678",
+	        "dnisStatus":"2",
+	        "dnisStatusNm":"비사용"
+	      }
+		]
+	}
+}

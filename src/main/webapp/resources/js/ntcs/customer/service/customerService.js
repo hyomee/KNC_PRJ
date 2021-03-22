@@ -1,4 +1,4 @@
-var historyTable;
+var dataTableList;
 
 $(document).ready(function() {	
 	ntcsObj.init();
@@ -8,7 +8,7 @@ $(document).ready(function() {
             $(this).removeClass('row_selected');
         }
         else {
-            historyTable.$('tr.row_selected').removeClass('row_selected');
+            dataTableList.$('tr.row_selected').removeClass('row_selected');
             $(this).addClass('row_selected');
         }
     });
@@ -17,80 +17,68 @@ $(document).ready(function() {
 
 var ntcsObj = {
 	init : function() {
-		//ntcsObj.grid();
+		ntcsObj.grid();
 	},
 	grid : function() {
-	
-        // 고객 기본정보 목록조회
-		var historyTableOption = {
-				pageLength: 10,
-				autoWidth: true,
-		        bPaginate: false,
-		        searching : false,
-		        select : false,
+
+        // 목록조회
+		var dataTableListOption = {
+				pageLength: 100,
+	            bInfo: false,
+	            paging: false,             
+	            bPaginate: false,
+	            autoWidth: false,
 		        bLengthChange: true,
-		     //   bAutoWidth: false,
 		        processing: true, 
-		     //   ordering: false,
+		        ordering: false,
 		        serverSide: false,
 		        searching: false,
+		        language : lang_kor,
+		        responsive: true,
 		        ajax : {
-		            "url":"/resources/json/conference/history/list.json",  
+		        	"url":"/resources/json/customer/service/list.json",  
+		            //"url":"/management/user/list",  
 		            "type":"GET",
+		            "dataSrc" : function(res) {
+		            	return res.messageBody.data;
+		            },
 		            "data": function (d) {
-		            	
+		            	d['custName'] = $('#srchCustName').val();
+		            	d['ctrtName'] = $('#srchCtrtName').val();
+		            	d['X-AUTH-TOKEN'] = '';
 		            }
 		        },
-		         columns : [
-		             {data: "svcConfCate"},
-		             {data: "svcResvRd"},
-		             {data: "attendName"},
-		             {data: "memberId"},
-		             {data: "svcName"},
-		             {data: "svcConfCime"},
-		             {data: "svcConfCuration"},
-		             {data: "svcConfMaxCarties"},
-		             {data: "svcConfCarties"},
-		             {data: "svcConfCpdate"}
-		         ],
+		        aoColumns: [
+		        	{data: "ctrtName", name: "ctrtName", defaultContent: ""}, 
+		        	{data: "prodName", name: "prodName", defaultContent: ""},
+		        	{data: "svcProdDvCd", name: "svcProdDvCd", defaultContent: ""},
+		        	{data: "svcProdDvNm", name: "svcProdDvNm", defaultContent: ""},
+		        	{data: "svcSttsCd", name: "svcSttsCd", defaultContent: ""}, 
+		        	{data: "svcSttsNm", name: "svcSttsNm", defaultContent: ""},
+		        	{data: "valdStrtDttm", name: "valdStrtDttm", defaultContent: ""}
+		        	
+		        ],
 				columnDefs: [
-						{ orderable: true,	className: 'dt-text-left',		targets: '_all' }
+					{ targets: [2,4], visible : false  }
+										
 				],
+				drawCallback: function( settings ) {
+
+				  	var api = this.api();
+		        
+			        var pageInfo = this.api().page.info();
+			        var page = pageInfo.page;
+			        
+			    	console.log('page Info :::: ', pageInfo);
+			 		console.log('데이터 ',api.rows().data().length);	        
+				}
 			};
 			
-			//historyDataTable = $('#listTable').DataTable(historyTableOption);		
+			dataTableList = $('#listTable').DataTable(dataTableListOption);		
+
 	},
 	search : function() {
-
-		if($('#srchCustName').val() == '') {
-			alert('고객명을 입력해 주세요');
-			return ;
-		}
-
-		var url = '/Conference/Sa/List';
-		var params = {};
-	
-		params['custName'] = $('#srchCustName').val(); 
-		
-		return false;
-		
-		$.ajax({ type: "GET"
-				, contentType: "application/json"
-				, url: url
-				, data: params
-				, dataType: 'json'
-				, success: function (json) { 
-	
-					$("#tblUserList").empty();
-					var tHtml = '';
-					if(json) {
-						
-					}
-					
-				}, error: function (e) {  
-					
-				}
-		});	
-
+	 	$('#listTable').DataTable().clear();
+	    $('#listTable').DataTable().ajax.reload()		
 	}
 }

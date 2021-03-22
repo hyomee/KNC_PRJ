@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<head>
-<script type="text/javascript" src="/resources/js/ntcs/management/user/managementUser.js"></script>
-</head>
+
 <!-- content 시작 -->
 <div class="content">
 	<div class="page-inner">
@@ -26,23 +24,26 @@
 					<a href="#">사용자 관리</a>
 				</li>
 			</ul>
-			<span class="pull-right"><a href="#" class="btn btn-primary btn-round btn-xs">+신규등록</a></span>
+			<span class="pull-right"><a href="#" data-toggle="modal" onClick="ntcsObj.addUserModal()" class="btn btn-primary btn-round btn-xs">+신규등록</a></span>
 		</div>
 		
 		<table class="table table-bordered mt-3">
-			<tbody>
-				<tr>
+			<tbody> 
+				<tr> 
 					<th scope="col" width="80">검색</th>
 					<td scope="col">
 						<form id="frmSearch" name="frmSearch" class="form-inline form-search-small">
 						<div class="input-group">
 							<label class="mr-2 ml-2"> 사용자 그룹 </label>
 							<select id="srchUserId" name="srchUserId" class="form-control">
-							  <option>운영그룹</option>
-							  <option>개발그룹</option>
+							  <option value="1">운영그룹</option>
+							  <option value="2">개발그룹</option>
 							</select>
-							<button type="button" class="btn btn-sm btn-primary ml-3" onclick="ntcsObj.search()"><i class="fas fa-search text-white"></i> 조회</button>
 						</div>
+							<span class="pull-right"><!-- 2021-02-19 버튼 오른쪽 정렬 -->
+							<button type="button" class="btn btn-sm btn-primary ml-2" onclick="ntcsObj.search()"><i class="fas fa-search text-white"></i> 조회</button>
+							</span>
+						
 						</form>
 					</td>
 				</tr>
@@ -50,13 +51,14 @@
 		</table>
 		<div class="page-header mt-3 mb-2">
 			<h3>
-				<i class="fas fa-portrait"></i> <b>사용자 정보</b
+				<i class="fas fa-portrait"></i> <b>사용자 정보</b>
 			</h3>
 		</div>
 		<div class="no-row-space" style="max-height:270px;overflow-y:auto"><!-- 2021-02-04 no-row-space 클래스명 추가시 스크롤 처리 -->
-			<div class="row">
+			
 				<table class="table table-hover table-bordered" id="listTable" style="width:100%">
 					<thead>
+						<th>사용자 그룹(코드)</th>
 						<th>사용자 그룹</th>
 						<th>로그인 ID</th>
 						<th>로그인 암호</th>
@@ -73,7 +75,7 @@
 						</tr -->
 					</tbody>
 				</table>
-			</div>
+			
 		</div><!--//table-->
 			
 		<div class="page-header mt-3">
@@ -122,7 +124,7 @@
 				</td>
 				<th>메일주소</th>
 				<td class="text-left">
-					<input type="email" id="eMail" name="eMail" class="form-control email"  />
+					<input type="text" id="eMail" name="eMail" class="form-control email"  />
 				</td>
 				<th>상태</th>
 				<td>
@@ -137,9 +139,13 @@
 		</form>
 		</div>
 		<p class="text-right">
-			<a href="#" class="btn btn-lg btn-primary" onclick="ntcsObj.modify()">수정 및 저장</a>
+			<a href="#" id="btnModify" class="btn btn-lg btn-primary" data-toggle="modal" onClick="ntcsObj.modifyUserModal()">수정</a>
 		</p>
+		<!-- 샤옹자 관리 등록 모달 -->
+		<%@ include file="/WEB-INF/views/management/user/managementUserModalAdd.jsp" %>
 
 	</div><!--//page-inner-->
 </div>
+
+<script type="text/javascript" src="/resources/js/ntcs/management/user/managementUser.js"></script>
 <!-- content 끝 -->

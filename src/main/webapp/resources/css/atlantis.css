@@ -9142,7 +9142,16 @@ input {
 	background-color:#e3f1fe !important;
 }
 
-
+.modal-fullscreen {
+    width: 100vw;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+}
+.modal-fullscreen .modal-content {
+   height:100% !important;
+   border-radius:0 !important;
+}
 
 
 

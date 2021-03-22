@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<head>
-<script type="text/javascript" src="/resources/js/management/dnis/managementDnis.js"></script>
-</head> 
 
 <!-- content 시작 -->
 <div class="content">
@@ -27,7 +24,7 @@
 					<a href="#">DNIS 관리</a>
 				</li>
 			</ul>
-			<span class="pull-right"><a href="#" class="btn btn-primary btn-round btn-xs">+신규등록</a></span>
+			<span class="pull-right"><a href="#"  data-toggle="modal" onClick="ntcsObj.addDnisModal()" class="btn btn-primary btn-round btn-xs">+신규등록</a></span>
 		</div>
 		
 		<table class="table table-bordered mt-2">
@@ -38,18 +35,17 @@
 						<form method="post" action="" class="form-inline form-search-box">
 						<div class="input-group">
 							<label class="mr-2 ml-2"> 번호대역 </label>
-							<select class="form-control">
-							  <option>1000</option>
-							  <option>옵션2</option>
+							<select id="srchDnis" name="srchDnis" class="form-control">
 							</select>
 							<label class="mr-2 ml-2"> 사용여부 </label>
-							<select class="form-control">
-							  <option>전체</option>
-							  <option>사용</option>
-							  <option>비사용</option>
+							<select id="srchDnisStatus" name="srchDnisStatus" class="form-control">
 							</select>
-							<button type="button" class="btn btn-sm btn-primary ml-3"><i class="fas fa-search text-white"></i> 조회</button>
 						</div>
+							<span class="pull-right"><!-- 2021-02-19 버튼 오른쪽 정렬 -->
+						
+							<button type="button" onClick="ntcsObj.search()" class="btn btn-sm btn-primary ml-3"><i class="fas fa-search text-white"></i> 조회</button>
+							</span>
+						</form>
 					</td>
 				</tr>
 			</tbody>
@@ -60,102 +56,31 @@
 			</h3>
 		</div>
 		<div class="no-row-space" style="max-height:270px;overflow-y:auto"><!-- 2021-02-04 no-row-space 클래스명 추가시 스크롤 처리 -->
-			<div class="row">
-				<table class="table table-hover table-bordered">
-					<thead>
-						<th>DNIS</th>
-						<th>지역번호</th>
-						<th>전화 국번호</th>
-						<th>라인번호</th>
-						<th>전화번호</th>
-						<th>상태</th>
-					</thead>
-					<tbody>
+			<table class="table table-hover table-bordered" id="listTable"> 
+				<thead>
+					<th>DNIS</th>
+					<th>지역번호</th>
+					<th>전화 국번호</th>
+					<th>라인번호</th>
+					<th>전화번호</th>
+					<th>상태(코드)</th>
+					<th>상태</th>
+				</thead>
+				<tbody>
+				
+					<!-- 데이터가 없을 경우 ->
 					<tr>
-						<td>1100</td>
-						<td>032</td>
-						<td>223</td>
-						<td>1234</td>
-						<td>032-223-1234</td>
-						<td>사용</td>
-					</tr>
-					<tr class="selected">
-						<td>1101</td>
-						<td>032</td>
-						<td>223</td>
-						<td>1235</td>
-						<td>032-223-1235</td>
-						<td>비사용</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-						<!-- 데이터가 없을 경우 ->
-						<tr>
-							<td colspan="6" class="no-data-cell">데이터가 없습니다.</td>
-						</tr -->
-					</tbody>
-				</table>
-			</div>
+						<td colspan="6" class="no-data-cell">데이터가 없습니다.</td>
+					</tr -->
+				</tbody>
+			</table>
 		</div><!--//table-->
 			
 		<div class="page-header mt-3">
 			<h3><i class="fas fa-list-ul"></i> <b>DNIS 등록 정보</b></h3>
 		</div>
-		
+		<div id="dnisInfo">
+		<form id="frmDnis" name="frmDnis">
 		<table class="table table-bordered">
 			<colgroup>
 				<col style="width:12%" />
@@ -169,45 +94,50 @@
 			<tr>
 				<th>지역번호</th>
 				<td>
-					<input type="text" class="form-control no-bor" id="" value="032"/>
+					<input type="text" id="areaNo" name="areaNo" class="form-control" value=""/>
 				</td>
 				<th>전화 국번호</th>
 				<td>
-					<input type="text" class="form-control" id="" value="223" />
+					<input type="text" id="prefixNo" name="prefixNo" class="form-control" />
 				</td>
 				<th>라인번호</th>
 				<td>
-					<input type="text" class="form-control" id="" value="1234" />
+					<input type="text"  id="lineNo" name="lineNo" class="form-control"/>
 				</td>
 			</tr>
 			<tr>
 				<th>DNIS</th>
 				<td>
-					<input type="text" class="form-control" id="" value="1100" />
+					<input type="text" id="dnis" name="dnis" class="form-control" readonly/> <!--   no-bor  -->
 				</td>
 				<th>전화번호</th>
 				<td>
-					<input type="text" class="form-control" id="" value="032-223-1234" />
+					<input type="text" id="fullTelNo" name="fullTelNo" class="form-control" />
 				</td>
 				<th>상태</th>
 				<td class="text-left"><!-- 2021-02-05 라디오 버튼 왼쪽 정렬 -->
 					<label class="form-radio-label">
-						<input class="form-radio-input" type="radio" name="optionsRadios" value="" checked="">
+						<input class="form-radio-input" type="radio" id="dnisStatus" name="dnisStatus" value="1">
 						<span class="form-radio-sign">비사용</span>
 					</label>
 					<label class="form-radio-label ml-3">
-						<input class="form-radio-input" type="radio" name="optionsRadios" value="">
+						<input class="form-radio-input" type="radio" id="dnisStatus" name="dnisStatus" value="2">
 						<span class="form-radio-sign">사용</span>
 					</label>
 				</td>
 			</tr>
 			</tbody>
 		</table>
-
+		</form>
+		</div>
+		
 		<p class="text-right">
-			<a href="#" class="btn btn-lg btn-primary">수정 및 저장</a>
+			<a href="#" id="btnModify" class="btn btn-lg btn-primary" data-toggle="modal" onClick="ntcsObj.modifyDnisModal()">수정</a>
 		</p>
+		<!-- DNIS 등록 모달 -->
+		<%@ include file="/WEB-INF/views/management/dnis/managementDnisModalAdd.jsp" %>
 
 	</div><!--//page-inner-->
 </div>
+<script type="text/javascript" src="/resources/js/ntcs/management/dnis/managementDnis.js"></script>
 <!-- content 끝 -->

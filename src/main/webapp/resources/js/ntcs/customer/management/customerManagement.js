@@ -20,7 +20,7 @@ $(document).ready(function() {
 	// 고객 상세정보 TAB CLICK
 	$('.nav li a').click(function() {
 
-		var tabId =  $(this).attr("id");
+		var tabId =  $(this).attr("id"); 
 		var tabIdx = $(this).data("idx");
 
 		// 청·수납 정보
@@ -30,8 +30,10 @@ $(document).ready(function() {
 			ntcsObj.detail.custMemberInfo();
 		} else if(tabId == 'pills-dnis-tab') { // DNIS정보
 			ntcsObj.detail.dnisInfo();
-		} else { // 상세기본정보
-			ntcsObj.detail.customerInfo();
+		} else if(tabId == 'pills-profile') { // 상세기본정보
+			ntcsObj.detail.customerInfo(); 
+		} else {
+		
 		}
 			
 		$('#custTabId').val(tabId);
@@ -42,20 +44,19 @@ $(document).ready(function() {
 	
   // 고객 기본 정보 row select 
   $('#custDataTable tbody').on('click', 'tr', function (event) {
- 
+
     custTable.$('tr.selected').removeClass('selected');
     $(this).addClass('selected');
     
 	 var data=custTable.rows().data(); // 데이터 목록조회
      var rowIdx = custTable.row(this).index(); // 상세조회 
-     console.log('상세조회 ',data[rowIdx]);
-    
+		
      event.stopPropagation();
   });	
   
   // 구성원정보 row select 
   $('#memberInfoDataTable tbody').on('click', 'tr', function (event) {
- 
+ 	console.log('기본정보');
     memberInfoTable.$('tr.selected').removeClass('selected');
     $(this).addClass('selected');
     
@@ -170,10 +171,11 @@ var ntcsObj = {
 	grid : function() { 
         // 고객 기본정보 목록조회
 		var custTableOption = {
-				pageLength: 10,
+				pageLength: 100,
 	            bInfo: false,
 	            paging: false,             
 	            bPaginate: false,
+	            autoWidth: false,
 		        select : false,
 		        bLengthChange: true,
 		     //   bAutoWidth: false,
@@ -181,37 +183,51 @@ var ntcsObj = {
 		        ordering: false,
 		        serverSide: false,
 		        searching: false,
+		        language : lang_kor,
+		        responsive: true,	 		        
 		        ajax : {
 		            "url":"/resources/json/customer/management/list.json",  
 		            "type":"GET",
+		            "dataSrc" : function(res) {
+		            	return res.messageBody.data;
+		            },
 		            "data": function (d) {
 		            	d['valdStrtDttm'] = $('#srchValdEndDttm').val();
 		            	d['valdEndDttm'] = $('#srchValdEndDttm').val();
 		            	d['custName'] =  $('#srchCustName').val();
+		            	d['X-AUTH-TOKEN'] = '';
 		            }
 		        },
-		         columns : [
-		             {data: "custName"},
-		             {data: "custType"},
-		             {data: "custClass"},
-		             {data: "corpRegNo"},
-		             {data: "bizRegNo"},
-		             {data: "telNo"},
-		             {data: "bizCond"},
-		             {data: "valdStrtDttm"}
+		        aoColumns : [
+		        	 {data: "custId", name: "custId", defaultContent: ""}, 
+		             {data: "custName", name: "custName", defaultContent: ""},
+		             {data: "custType", name: "custType", defaultContent: ""}, 
+		             {data: "custTypeNm", name: "custTypeNm", defaultContent: ""},
+		             {data: "custClass", name: "custClass", defaultContent: ""},
+					 {data: "custClassNm", name: "custClassNm", defaultContent: ""},
+		             {data: "corpRegNo", name: "corpRegNo", defaultContent: ""},
+		             {data: "bizRegNo", name: "bizRegNo", defaultContent: ""},
+		             {data: "telNo", name: "telNo", defaultContent: ""},
+		             {data: "bizCond", name: "bizCond", defaultContent: ""},
+		             {data: "bizCondNm", name: "bizCondNm", defaultContent: ""},
+		             {data: "valdStrtDttm", name: "valdStrtDttm", defaultContent: ""},
 		         ],
 				columnDefs: [
-						{ orderable: true,	className: 'dt-text-left',		targets: '_all' }
+					{ targets :[0,2,4,9] ,visible : false}	
 				],
+				drawCallback: function( settings ) {
+				 	ntcsNoData(this.api());
+				}				
 			};
 			
 			custTable = $('#custDataTable').DataTable(custTableOption);	
 			
 			// 구성원정보
 			var memnerInfoOption = {
-				pageLength: 10,
-				autoWidth: true,
-		        bPaginate: false,
+	            bInfo: false,
+	            paging: false,             
+	            bPaginate: false,
+	            autoWidth: false,
 		        searching : false,
 		        select : false,
 		        bLengthChange: true,
@@ -220,6 +236,8 @@ var ntcsObj = {
 		        ordering: false,
 		        serverSide: false,
 		        searching: false,
+		        language : lang_kor,
+		        responsive: true,			        
 		        ajax : {
 		            "url":"/resources/json/customer/management/detail.json",
 		            "type":"GET",
@@ -238,6 +256,9 @@ var ntcsObj = {
 				columnDefs: [
 						{ orderable: true,	className: 'dt-text-left',		targets: '_all' }
 				],
+				drawCallback: function( settings ) {
+				 	ntcsNoData(this.api());
+				}				
 			};
 			
 			memberInfoTable = $('#memberInfoDataTable').DataTable(memnerInfoOption);
@@ -245,16 +266,19 @@ var ntcsObj = {
 			
 			// DNIS 정보	
 			var dnisInfoOption = {
-				autoWidth: true,
-		        bPaginate: false,
-		        searching : false,
+	            bInfo: false,
+	            paging: false,             
+	            bPaginate: false,
+	            autoWidth: false,
 		        select : false,
 		        bLengthChange: true,
 		        bAutoWidth: true,
 		        processing: true, 
-		       ordering: false,
+		        ordering: false,
 		        serverSide: false,
 		        searching: false,
+		        language : lang_kor,
+		        responsive: true,			        
 		        ajax : {
 		            "url":"/resources/json/customer/management/detail.json",
 		            "type":"GET",
@@ -266,21 +290,14 @@ var ntcsObj = {
 		             {data: "dnis"},
 		             {data: "fullTelNo"},
 		             {data: "prefixNo"},
-		             {data: "dnisStatus", type : "select",
-						 ipOpts: [
-					          { label: "", value: "" },
-					          { label: "Chicago", value: "1" },
-					          { label: "New York", value: "2" },
-					          { label: "Los Angeles", value: "3" },
-					          { label: "Miami", value: "4" },
-					          { label: "San Francisco", value: "5" },
-					          { label: "London", value: "6" }
-					     ]	
-		             }
+		             {data: "dnisStatus"}
 		         ],   
 				columnDefs: [
 						{ orderable: true,	className: 'dt-text-left',		targets: '_all' }
 				],
+				drawCallback: function( settings ) {
+				 	ntcsNoData(this.api());
+				}				
 			};
 
 			dnisInfoTable = $('#dnisInfoDataTable').DataTable(dnisInfoOption);					
@@ -511,48 +528,14 @@ var ntcsObj = {
 	 		return true;
 		
 		},
-		// 청수납정보 validation check
-		validateMoneyInfo : function() {
-		
-			var target$;
-	
-	 		target$ = pillsMoneyContent$.find("select[name='billCyclCd']");		
-	 		if (checkValue(target$, "청구주기를 선택해 주세요.")) {
-	 			return false;
-	 		}
-	 		
-	 		target$ = pillsMoneyContent$.find("select[name='bltxtKdCd']");		
-	 		if (checkValue(target$, "청구서유형을 선택해 주세요.")) {
-	 			return false;
-	 		}	 		
-	 		
-	 		target$ = pillsMoneyContent$.find("input[name='bltxtRcptName']");		
-	 		if (checkValue(target$, "수령인명을 입력해 주세요.")) {
-	 			return false;
-	 		}		 
-	 	
-	 		target$ = pillsMoneyContent$.find("input[name='bltxtEmail']");		
-	 		if (checkValue(target$, "E-mail을 입력해 주세요.")) {
-	 			return false;
-	 		}
-	 			 
-	 		target$ = pillsMoneyContent$.find("input[name='pymName']");		
-	 		if (checkValue(target$, "납부자명을 입력해 주세요.")) {
-	 			return false;
-	 		}	 			
-	 			
-	 		target$ = pillsMoneyContent$.find("select[name='pymCardCd']");		
-	 		if (checkValue(target$, "은행(카드)사를 선택해주세요.")) {
-	 			return false;
-	 		}		 			
-	 			
-	 		target$ = pillsMoneyContent$.find("input[name='pymAccuntNo']");		
-	 		if (checkValue(target$, "계좌(카드) 번호를 입력해 주세요.")) {
-	 			return false;
-	 		}		 			
-	 				
-	 		return true;	 		
-		}
+		// 구성원정보 Modal Popup
+		memberInfoPopup : function() {
+			$('#memberInfoModal').modal({backdrop: 'static', keyboard: false});
+		},				
+		// 회의연결번호 Modal Popup
+		dnisModalPopup : function() {
+			$('#dnisModal').modal({backdrop: 'static', keyboard: false});
+		}			
 		
 	}
 	

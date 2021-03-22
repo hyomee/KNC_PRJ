@@ -1,0 +1,113 @@
+{
+	"messageBody": {
+	
+	    "recordsTotal": 8,
+	    "recordsFiltered": 8,
+		"data": [{
+			"svcResvId":"C4758392",
+			"custId":"1100",
+	        "custNm":"삼성전자",
+	        "memberId":"admin",
+	        "memberNm":"홍길동",
+	        "svcName":"주간보고",
+	        "svcConfTime":"10:00",
+	        "svcConfDuration":"60:00",
+	        "maxParties":"15",
+	        "svcConfParties":"12",
+	        "svcDetailFlag":"1",
+	        "svcDetailFlagNm":"진행중"
+	      }, {
+			"svcResvId":"C4758392",
+			"custId":"1100",
+	        "custNm":"삼성전자",
+	        "memberId":"admin", 
+	        "memberNm":"홍길동",
+	        "svcName":"주간보고",
+	        "svcConfTime":"10:00",
+	        "svcConfDuration":"60:00",
+	        "maxParties":"15",
+	        "svcConfParties":"12",
+	        "svcDetailFlag":"1",
+	        "svcDetailFlagNm":"진행중"
+	      }, {
+			"svcResvId":"C4758392",
+			"custId":"1100",
+	        "custNm":"삼성전자",
+	        "memberId":"admin",
+	        "memberNm":"홍길동",
+	        "svcName":"주간보고",
+	        "svcConfTime":"10:00",
+	        "svcConfDuration":"60:00",
+	        "maxParties":"15",
+	        "svcConfParties":"12",
+	        "svcDetailFlag":"1",
+	        "svcDetailFlagNm":"진행중"
+	      }, {
+			"svcResvId":"C4758392",
+			"custId":"1100",
+	        "custNm":"삼성전자",
+	        "memberId":"admin",
+	        "memberNm":"홍길동",
+	        "svcName":"주간보고",
+	        "svcConfTime":"10:00",
+	        "svcConfDuration":"60:00",
+	        "maxParties":"15",
+	        "svcConfParties":"12",
+	        "svcDetailFlag":"1",
+	        "svcDetailFlagNm":"진행중"
+	      }, {
+			"svcResvId":"C4758392",
+			"custId":"1100",
+	        "custNm":"삼성전자",
+	        "memberId":"admin",
+	        "memberNm":"홍길동",
+	        "svcName":"주간보고",
+	        "svcConfTime":"10:00",
+	        "svcConfDuration":"60:00",
+	        "maxParties":"15",
+	        "svcConfParties":"12",
+	        "svcDetailFlag":"1",
+	        "svcDetailFlagNm":"진행중"
+	      }, {
+			"svcResvId":"C4758392",
+			"custId":"1100",
+	        "custNm":"삼성전자",
+	        "memberId":"admin",
+	        "memberNm":"홍길동",
+	        "svcName":"주간보고",
+	        "svcConfTime":"10:00",
+	        "svcConfDuration":"60:00",
+	        "maxParties":"15",
+	        "svcConfParties":"12",
+	        "svcDetailFlag":"1",
+	        "svcDetailFlagNm":"진행중"
+	      }, {
+			"svcResvId":"C4758392",
+			"custId":"1100",
+	        "custNm":"삼성전자",
+	        "memberId":"admin",
+	        "memberNm":"홍길동",
+	        "svcName":"주간보고",
+	        "svcConfTime":"10:00",
+	        "svcConfDuration":"60:00",
+	        "maxParties":"15",
+	        "svcConfParties":"12",
+	        "svcDetailFlag":"1",
+	        "svcDetailFlagNm":"진행중"
+	      }, {
+			"svcResvId":"C4758392",
+			"custId":"1100",
+	        "custNm":"삼성전자",
+	        "memberId":"admin",
+	        "memberNm":"홍길동",
+	        "svcName":"주간보고",
+	        "svcConfTime":"10:00",
+	        "svcConfDuration":"60:00",
+	        "maxParties":"15",
+	        "svcConfParties":"12",
+	        "svcDetailFlag":"1",
+	        "svcDetailFlagNm":"진행중"
+	      }          
+		]	
+	}
+}

@@ -1,4 +1,4 @@
-var historyTable;
+var dataTableList;
 
 $(document).ready(function() {	
 	ntcsObj.init();
@@ -8,89 +8,104 @@ $(document).ready(function() {
             $(this).removeClass('row_selected');
         }
         else {
-            historyTable.$('tr.row_selected').removeClass('row_selected');
+            dataTableList.$('tr.row_selected').removeClass('row_selected');
             $(this).addClass('row_selected');
         }
     });
 	
-});	
+});	 
 
 var ntcsObj = {
 	init : function() {
-		//ntcsObj.grid();
+		ntcsObj.grid();
 	},
 	grid : function() {
-	
-        // 고객 기본정보 목록조회
-		var historyTableOption = {
-				pageLength: 10,
-				autoWidth: true,
-		        bPaginate: false,
-		        searching : false,
-		        select : false,
+
+        // 목록조회
+		var dataTableListOption = {
+				pageLength: 100,
+	            bInfo: false,
+	            paging: false,             
+	            bPaginate: false,
+	            autoWidth : false,
 		        bLengthChange: true,
-		     //   bAutoWidth: false,
 		        processing: true, 
-		     //   ordering: false,
+		        ordering: false,
 		        serverSide: false,
 		        searching: false,
+		        language: lang_kor,
+		        responsive: true,
 		        ajax : {
-		            "url":"/resources/json/conference/history/list.json",  
+		        	"url":"/resources/json/customer/contract/list.json",  
+		            //"url":"/management/user/list",  
 		            "type":"GET",
+		            "dataSrc" : function(res) {
+		            	return res.messageBody.data;
+		            },
 		            "data": function (d) {
-		            	
+		            	d['userId'] = $('#srchUserId').val();
+		            	d['X-AUTH-TOKEN'] = '';
 		            }
 		        },
-		         columns : [
-		             {data: "svcConfCate"},
-		             {data: "svcResvRd"},
-		             {data: "attendName"},
-		             {data: "memberId"},
-		             {data: "svcName"},
-		             {data: "svcConfCime"},
-		             {data: "svcConfCuration"},
-		             {data: "svcConfMaxCarties"},
-		             {data: "svcConfCarties"},
-		             {data: "svcConfCpdate"}
-		         ],
+		        aoColumns: [
+		        	{data: "ctrtId", name: "ctrtId", defaultContent: ""},
+		        	{data: "ctrtName", name: "ctrtName", defaultContent: ""},
+		        	{data: "ctrtSttsCd", name: "ctrtSttsCd", defaultContent: ""},
+		        	{data: "ctrtSttsNm", name: "ctrtSttsNm", defaultContent: ""},
+		        	{data: "svcNo", name: "svcNo", defaultContent: ""},
+		        	{data: "ctrtAppnt", name: "ctrtAppnt", defaultContent: ""},
+		        	{data: "salesUsrId", name: "salesUsrId", defaultContent: ""},
+		        	{data: "salesUsrNm", name: "salesUsrNm", defaultContent: ""},
+		        	{data: "salesOrgId", name: "salesOrgId", defaultContent: ""},
+		        	{data: "salesOrgNm", name: "salesOrgNm", defaultContent: ""},
+		        	{data: "valdStrtDttm", name: "valdStrtDttm", defaultContent: ""}, 
+		        	{data: "valdEndDttm", name: "valdEndDttm", defaultContent: ""}, 
+		        	
+		        ],
 				columnDefs: [
-						{ orderable: true,	className: 'dt-text-left',		targets: '_all' }
+					{ targets: [2,6,8], visible : false  }
+										
 				],
+				drawCallback: function( settings ) {
+
+				  	var api = this.api();
+		        
+			        var pageInfo = this.api().page.info();
+			        var page = pageInfo.page;
+			        
+			    	console.log('page Info :::: ', pageInfo);
+			 		console.log('데이터 ',api.rows().data().length);
+			 		
+			 		ntcsNoData(this.api());
+				}
 			};
 			
-			//historyDataTable = $('#listTable').DataTable(historyTableOption);		
+			dataTableList = $('#listTable').DataTable(dataTableListOption);		
+
 	},
+	// 조회
 	search : function() {
-
-		if($('#srchCustName').val() == '') {
-			alert('고객명을 입력해 주세요');
-			return ;
-		}
-
-		var url = '/Conference/Sa/List';
-		var params = {};
+	 	$('#listTable').DataTable().clear();
+	    $('#listTable').DataTable().ajax.reload()		
+	}, 
+	// 청구계정 Modal Popup
+	baModalPopup : function() {
+		console.log('청구계정 popup');
+		//custNameModalPopup();
+		$('#billingAccountModal').modal({backdrop: 'static', keyboard: false});
+	},
+	// 납부계정 Modal Popup
+	paModalPopup : function() {
+		console.log('납부계정 popup');
+		$('#paymentAccountModal').modal({backdrop: 'static', keyboard: false});
+	},
+	// 회의연결번호 Modal Popup
+	dnisModalPopup : function() {
+		$('#dnisModal').modal({backdrop: 'static', keyboard: false});
+	},
+	// 고객명 모달 팝업
+	custNameModal : function(custId) {
+		custNameModalPopup(custId);
+	}		
 	
-		params['custName'] = $('#srchCustName').val(); 
-		
-		return false;
-		
-		$.ajax({ type: "GET"
-				, contentType: "application/json"
-				, url: url
-				, data: params
-				, dataType: 'json'
-				, success: function (json) { 
-	
-					$("#tblUserList").empty();
-					var tHtml = '';
-					if(json) {
-						
-					}
-					
-				}, error: function (e) {  
-					
-				}
-		});	
-
-	}
 }

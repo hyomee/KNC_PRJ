@@ -1,0 +1,26 @@
+{
+	"messageBody": {
+	
+	    "recordsTotal": 1,
+	    "recordsFiltered": 1,
+		"data": [
+	      {
+			"rateDvCd":"500",
+			"rateDvNm":"통역_기본",
+	        "rateAplyDvCd":"1",
+	        "rateAplyDvNm":"기본료",
+	        "rateAplyLvlCd":"1",
+	        "rateAplyLvlNm":"가입",
+	        "rateAplyKdCd":"1",
+	        "rateAplyKdNm":"정액",
+	        "rateAplyUnitCd":"1",
+	        "rateAplyUnitNm":"건당",
+	        "rateAplyUnit":"1",
+	        "rate":"300000",
+	        "valdStrtDttm":"2020-01-01",
+	        "valdEndDttm":"9999-12-31"
+	      }
+		]
+	}
+}
+	           

@@ -18,7 +18,7 @@ function layoutsColors(){
 	} else {
 		$('html').removeClass('sidebar-color');
 	}
-
+ 
 	if($('body').is('[data-image]')) {
 		$('body').css('background-image', 'url("' + $('body').attr('data-image') + '")');
 	} else {
@@ -276,22 +276,56 @@ $(document).ready(function(){
 	});
 
 	// addClass if nav-item click and has subnav
-
 	$(".nav-item a").on('click', (function(){ 
+	
+		// 현재 active 찾기
+		var aHref = '';
 		
-		// 보완 필요함
+		$('.nav-item').each(function(i, n){ 
+			if($(this).hasClass('active')) {
+				aHref = $(this).data('ntcs');
+			}
+		});
+		
+		var mHref = $(this).attr('href').replace('#','');
+
 		var sHref = $(this).attr('href');
 		if(sHref == '#') return false;
 		
-		$('.nav-item').removeClass('active');
+		$('.nav-item').removeClass('active submenu');
 		
-		if ( $(this).parent().find('.collapse').hasClass("show") ) {
+		// .nav item submenu active 
+		if ( $(this).parent().find('.collapse').hasClass("show") ) {  
+
 			$(this).parent().removeClass('submenu');
 			$('.nav-item').removeClass('active');
-		} else { 
+			if(aHref == mHref) { 
+				$(this).parent().addClass('submenu active');
+			}
+		} else {   
+
+			$('.nav-item').each(function(i, n){ 
+				
+				var nHref = $(this).data('ntcs');
+				if(nHref != undefined) {
+					$('#'+nHref).removeClass('show');
+				}
+				$("a").attr("aria-expanded","false");
+			});
+			
 			$(this).parent().addClass('submenu active');
 		}
+		
+		// 선택된 메뉴는 li active 추가 
+		$(".nav-item li a").on('click', (function(){ 
 
+			$('.nav-item li').each(function(i,n) {	
+				$(this).removeClass('active');
+			});
+
+          	$(this).parent().addClass('active');
+		}));
+	
 	}));
 
 

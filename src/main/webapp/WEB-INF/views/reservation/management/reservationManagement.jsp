@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<head>
-<script type="text/javascript" src="/resources/js/reservation/management/reservationManagement.js"></script>
-</head>
+
 <!-- content 시작 -->
 <div class="content">
 	<div class="page-inner">
@@ -22,7 +20,7 @@
 				<li class="separator">
 					<i class="flaticon-right-arrow"></i>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item"> 
 					<a href="#">예약관리</a>
 				</li>
 			</ul>
@@ -44,8 +42,10 @@
 						<div class="input-group input-daterange" id="datePicker" style="width:350px;">
 							<label class="mr-2 ml-2"> 예약일자 </label>
 							<input type="text" class="form-control form-control-sm mr-2" value="">
-							<button type="button" class="btn btn-sm btn-primary ml-3"><i class="fas fa-search text-white"></i> 조회</button>
 						</div>
+						<span class="pull-right"><!-- 2021-02-19 버튼 오른쪽 정렬 -->
+						<button type="button" onClick="ntcsObj.search()" class="btn btn-sm btn-primary ml-3"><i class="fas fa-search text-white"></i> 조회</button>
+						</span>						
 						<script>
 							$(function() {	
 								$('#datePicker').datepicker({
@@ -85,149 +85,31 @@
 			<h3><i class="far fa-clock"></i> <b>예약 정보</b></h3>
 		</div>
 		<div class="no-row-space" style="max-height:270px;overflow-y:auto"><!-- 2021-02-04 no-row-space 클래스명 추가시 스크롤 처리 -->
-			<div class="row">
-				<table class="table table-hover table-bordered">
-					<thead>
-						<th>예약번호</th>
-						<th>회의명</th>
-						<th>연결번호</th>
-						<th>회의유형</th>
-						<th>회의예약일시</th>
-						<th>회의기간</th>
-						<th>참석자수</th>
-						<th>확정코드</th>
-						<th>빌링 코드</th>
-						<th>중단여부</th>
-						<th>경보여부</th>
-					</thead>
-					<tbody>
-					<tr>
-						<td>123456</td>
-						<td>프로젝트 이슈회의</td>
-						<td>5010</td>
-						<td>Passcode Meet</td>
-						<td>2020-12-18 14:00:00</td>
-						<td>60</td>
-						<td>5</td>
-						<td>56781234</td>
-						<td>C-234567</td>
-						<td>자동종료</td>
-						<td>
-							<span class="text-primary">Beep</span>
-						</td>
-					</tr>
-					<tr>
-						<td>123456</td>
-						<td>프로젝트 이슈회의</td>
-						<td>5010</td>
-						<td>Passcode Meet</td>
-						<td>2020-12-18 14:00:00</td>
-						<td>60</td>
-						<td>5</td>
-						<td>56781234</td>
-						<td>C-234567</td>
-						<td>자동종료</td>
-						<td>
-							<span class="text-primary">Beep</span>
-						</td>
-					</tr>
-					<tr class="selected">
-						<td>123456</td>
-						<td>프로젝트 이슈회의</td>
-						<td>5010</td>
-						<td>Passcode Meet</td>
-						<td>2020-12-18 14:00:00</td>
-						<td>60</td>
-						<td>5</td>
-						<td>56781234</td>
-						<td>C-234567</td>
-						<td>자동종료</td>
-						<td>
-							<span class="text-danger">Tone</span>
-						</td>
-					</tr>
-					<tr>
-						<td>123456</td>
-						<td>프로젝트 이슈회의</td>
-						<td>5010</td>
-						<td>Passcode Meet</td>
-						<td>2020-12-18 14:00:00</td>
-						<td>60</td>
-						<td>5</td>
-						<td>56781234</td>
-						<td>C-234567</td>
-						<td>자동종료</td>
-						<td>
-							<span class="text-danger">Tone</span>
-						</td>
-					</tr>
-					<tr class="selected">
-						<td>123456</td>
-						<td>프로젝트 이슈회의</td>
-						<td>5010</td>
-						<td>Passcode Meet</td>
-						<td>2020-12-18 14:00:00</td>
-						<td>60</td>
-						<td>5</td>
-						<td>56781234</td>
-						<td>C-234567</td>
-						<td>자동종료</td>
-						<td>
-							<span class="text-primary">Beep</span>
-						</td>
-					</tr>
-					<tr>
-						<td>123456</td>
-						<td>프로젝트 이슈회의</td>
-						<td>5010</td>
-						<td>Passcode Meet</td>
-						<td>2020-12-18 14:00:00</td>
-						<td>60</td>
-						<td>5</td>
-						<td>56781234</td>
-						<td>C-234567</td>
-						<td>자동종료</td>
-						<td>
-							<span class="text-danger">Tone</span>
-						</td>
-					</tr>
-					<tr class="selected">
-						<td>123456</td>
-						<td>프로젝트 이슈회의</td>
-						<td>5010</td>
-						<td>Passcode Meet</td>
-						<td>2020-12-18 14:00:00</td>
-						<td>60</td>
-						<td>5</td>
-						<td>56781234</td>
-						<td>C-234567</td>
-						<td>자동종료</td>
-						<td>
-							<span class="text-primary">Beep</span>
-						</td>
-					</tr>
-					<tr>
-						<td>123456</td>
-						<td>프로젝트 이슈회의</td>
-						<td>5010</td>
-						<td>Passcode Meet</td>
-						<td>2020-12-18 14:00:00</td>
-						<td>60</td>
-						<td>5</td>
-						<td>56781234</td>
-						<td>C-234567</td>
-						<td>자동종료</td>
-						<td>
-							<span class="text-danger">Tone</span>
-						</td>
-					</tr>
-					<!-- 데이터가 없을 경우 ->
-					<tr>
-						<td colspan="8" class="no-data-cell">데이터가 없습니다.</td>
-					</tr -->
-					</tbody>
-				</table>
-			</div>
+			<table class="table table-hover table-bordered" id="listTable">
+				<thead>
+					<th>예약번호</th>
+					<th>회의명</th>
+					<th>연결번호</th>
+					<th>회의유형(코드)</th>
+					<th>회의유형</th>
+					<th>회의예약일시</th>
+					<th>회의예약일시(분)</th>
+					<th>회의기간</th>
+					<th>참석자수</th>
+					<th>확정코드</th>
+					<th>빌링 코드</th>
+					<th>중단여부</th>
+					<th>경보여부</th>
+				</thead>
+				<tbody>
+				
+				<!-- 데이터가 없을 경우 ->
+				<tr>
+					<td colspan="8" class="no-data-cell">데이터가 없습니다.</td>
+				</tr -->
+				</tbody>
+			</table>
+		
 		</div><!--//table-->
 			
 		<div class="page-header mt-3">
@@ -239,9 +121,6 @@
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" id="pills-money-tab" data-toggle="pill" href="#pills-money" role="tab" aria-controls="pills-money" aria-selected="false">참석자 정보</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" id="pills-member-tab" data-toggle="pill" href="#pills-member" role="tab" aria-controls="pills-member" aria-selected="false">예약 상세정보</a>
 			</li>
 		</ul>
 		<div class="tab-content mb-3" id="pills-tabContent">
@@ -258,79 +137,64 @@
 					<tbody>
 					<tr>
 						<th>주체자ID</th>
-						<td><input type="text" class="form-control form-control-sm" id="" value="홍길동" readonly></td>
+						<td><input type="text" id="memberId" name="memberId" class="form-control form-control-sm" id="" value="" readonly></td>
 						<th>예약ID</th>
 						<td>
-							<input type="text" class="form-control form-control-sm" id="" value="법인">
+							<input type="text" id="svcResvId" name="svcResvId" class="form-control form-control-sm">
 							<!--<input type="text" class="form-control form-control-sm no-bor" id="" value="법인"> --><!-- 보더없는 입력박스 스타일 추가 -->
 						</td>
 						<th>예약요청유형</th>
 						<td>
-							<select class="form-control form-control-sm">
-							  <option>A : Add new</option>
-							  <option>옵션2</option>
-							  <option>...</option>
+							<select id="svcReqType" name="svcReqType" class="form-control form-control-sm">
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<th>예약명</th>
-						<td colspan="5"><input type="text" class="form-control form-control-sm" id="" value="2020년-실적보고 회의"></td>
+						<td colspan="5"><input type="text" id="svcName" name="svcName" class="form-control form-control-sm" value=""></td>
 					</tr>
 					<tr>
 						<th>빌링코드</th>
-						<td><input type="text" class="form-control form-control-sm" id="" value="C-098123" readonly /></td>
+						<td><input type="text" id="billCode" name="billCode" class="form-control form-control-sm" value="" readonly /></td>
 						<th>확정코드</th>
-						<td><input type="text" class="form-control form-control-sm" id="" value="29384756"></td>
+						<td><input type="text" id="svcConfCd" name="svcConfCd" class="form-control form-control-sm" id="" value=""></td>
 						<th>연결번호</th>
 						<td>
-							<select class="form-control form-control-sm">
-							  <option>옵션1</option>
-							  <option>옵션2</option>
-							  <option>...</option>
+							<select id="svcAcntNo" name="svcAcntNo" class="form-control form-control-sm">
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<th>회의유형</th>
 						<td>
-							<select class="form-control form-control-sm" disabled>
-							  <option>옵션1</option>
-							  <option>옵션2</option>
-							  <option>...</option>
+							<select id="attendConfType" name="attendConfType" class="form-control form-control-sm">
 							</select>
 						</td>
 						<th>회의일시</th>
 						<td>
 							<div class="input-group">
-								<input type="text" class="form-control form-control-sm" id="" value="2020-12-18">
-								<input type="text" class="form-control form-control-sm ml-2" id="" value="14:00:00">
+								<input type="text" id="svcConfDate" name="svcConfDate" class="form-control form-control-sm">
+								<input type="text" id="svcConfTime" name="svcConfTime" class="form-control form-control-sm ml-2">
 							</div>
 						</td>
 						<th>회의기간</th>
 						<td>
-							<input type="text" class="form-control form-control-sm" id="" value="60">
+							<input type="text" id="svcConfDuration" name="svcConfDuration" class="form-control form-control-sm" value="">
 						</td>
 					</tr>
 					<tr>
 						<th>참석자수</th>
 						<td>
-							<input type="text" class="form-control form-control-sm" id="" value="5">
+							<input type="text" id="svcConfParties" name="svcConfParties" maxlength="4" class="form-control form-control-sm" value="">
 						</td>
 						<th>중단여부</th>
 						<td>
-							<select class="form-control form-control-sm">
-							  <option>0 : 자동종료</option>
-							  <option>옵션2</option>
-							  <option>...</option>
+							<select id="svcAutoBreakDown" name="svcAutoBreakDown" class="form-control form-control-sm">
 							</select>
 						</td>
 						<th>경보옵션</th>
 						<td>
-							<select class="form-control form-control-sm">
-							  <option>1 : Beep/Message 통지</option>
-							  <option>옵션2</option>
-							  <option>...</option>
+							<select id="svcAlertOptions" name="svcAlertOptions" class="form-control form-control-sm">
 							</select>
 						</td>
 					</tr>
@@ -338,28 +202,22 @@
 						<th>상세설정여부</th>
 						<td class="text-left"><!-- 2021-02-05 라디오 버튼 왼쪽 정렬 -->
 							<label class="form-radio-label">
-								<input class="form-radio-input" type="radio" name="optionsRadiosY" value="" checked="">
+								<input class="form-radio-input" type="radio" id="svcDetailFlag" name="svcDetailFlag" value="N" checked>
 								<span class="form-radio-sign">아니오</span>
 							</label>
 							<label class="form-radio-label ml-3">
-								<input class="form-radio-input" type="radio" name="optionsRadiosY" value="">
+								<input class="form-radio-input" type="radio" id="svcDetailFlag" name="svcDetailFlag" value="Y">
 								<span class="form-radio-sign">예</span>
 							</label>
 						</td>
 						<th>사전설정여부</th>
 						<td>
-							<select class="form-control form-control-sm">
-							  <option>선택</option>
-							  <option>옵션2</option>
-							  <option>...</option>
+							<select id="svcPresetFlag" name="svcPresetFlag" class="form-control form-control-sm">
 							</select>
 						</td>
 						<th>콜-플로우</th>
 						<td>
-							<select class="form-control form-control-sm">
-							  <option>0 : Bridge default setting</option>
-							  <option>옵션2</option>
-							  <option>...</option>
+							<select id="svcCallFlow" name="svcCallFlow" class="form-control form-control-sm">
 							</select>
 						</td>
 					</tr>
@@ -367,33 +225,33 @@
 						<th>호스트회의참여</th>
 						<td class="text-left"><!-- 2021-02-05 라디오 버튼 왼쪽 정렬 -->
 							<label class="form-radio-label">
-								<input class="form-radio-input" type="radio" name="optionsRadiosCall" value="" checked="">
+								<input class="form-radio-input" type="radio" id="svcHostStrtConf" name="svcHostStrtConf" value="1" checked>
 								<span class="form-radio-sign">전화걸기</span>
 							</label>
 							<label class="form-radio-label ml-3">
-								<input class="form-radio-input" type="radio" name="optionsRadiosCall" value="">
+								<input class="form-radio-input" type="radio" id="svcHostStrtConf" name="svcHostStrtConf" value="2">
 								<span class="form-radio-sign">직접참여</span>
 							</label>
 						</td>
-						<th>예약 저장 여부</th>
+						<th>예약 저장 여부</th> 
 						<td class="text-left"><!-- 2021-02-05 라디오 버튼 왼쪽 정렬 -->
 							<label class="form-radio-label">
-								<input class="form-radio-input" type="radio" name="optionsRadiosSave" value="" checked="">
+								<input class="form-radio-input" type="radio" id="svcConfUpdate" name="svcConfUpdate" value="N">
 								<span class="form-radio-sign">아니오</span>
 							</label>
 							<label class="form-radio-label ml-3">
-								<input class="form-radio-input" type="radio" name="optionsRadiosSave" value="">
+								<input class="form-radio-input" type="radio" id="svcConfUpdate" name="svcConfUpdate" value="Y" checked>
 								<span class="form-radio-sign">예</span>
 							</label>
 						</td>
 						<th>PIN 검증방법</th>
 						<td class="text-left"><!-- 2021-02-05 라디오 버튼 왼쪽 정렬 -->
 							<label class="form-radio-label">
-								<input class="form-radio-input" type="radio" name="optionsRadiosPin" value="" checked="">
+								<input class="form-radio-input" type="radio" id="svcLocalPinValid" name="svcLocalPinValid" value="1" checked="">
 								<span class="form-radio-sign">외부검증</span>
 							</label>
 							<label class="form-radio-label ml-3">
-								<input class="form-radio-input" type="radio" name="optionsRadiosPin" value="">
+								<input class="form-radio-input" type="radio" id="svcLocalPinValid" name="svcLocalPinValid" value="2">
 								<span class="form-radio-sign">내부검증</span>
 							</label>
 						</td>
@@ -401,27 +259,27 @@
 					<tr>
 						<th>파티션 ID</th>
 						<td>
-							<input type="text" class="form-control form-control-sm" id="" value="">
+							<input type="text" id="svcPartitionId" name="svcPartitionId" class="form-control form-control-sm" value="">
 						</td>
 						<th>Link Flag</th>
 						<td class="text-left"><!-- 2021-02-05 라디오 버튼 왼쪽 정렬 -->
 							<label class="form-radio-label">
-								<input class="form-radio-input" type="radio" name="optionsRadiosLink" value="" checked="">
+								<input class="form-radio-input" type="radio" id="svcLinkFlag" name="svcLinkFlag" value="N" checked="">
 								<span class="form-radio-sign">아니오</span>
 							</label>
 							<label class="form-radio-label ml-3">
-								<input class="form-radio-input" type="radio" name="optionsRadiosLink" value="">
+								<input class="form-radio-input" type="radio" id="svcLinkFlag" name="svcLinkFlag" value="Y">
 								<span class="form-radio-sign">예</span>
 							</label>
 						</td>
 						<th>특별 지침 여부</th>
 						<td class="text-left"><!-- 2021-02-05 라디오 버튼 왼쪽 정렬 -->
 							<label class="form-radio-label">
-								<input class="form-radio-input" type="radio" name="optionsRadiosSpeical" value="" checked="">
+								<input class="form-radio-input" type="radio" id="svcSpecFlag" name="svcSpecFlag" value="D" checked="">
 								<span class="form-radio-sign">DETUPD</span>
 							</label>
 							<label class="form-radio-label ml-3">
-								<input class="form-radio-input" type="radio" name="optionsRadiosSpeical" value="">
+								<input class="form-radio-input" type="radio" id="svcSpecFlag" name="svcSpecFlag" value="P">
 								<span class="form-radio-sign">SPECINS</span>
 							</label>
 						</td>
@@ -431,7 +289,7 @@
 			</div>
 			<div class="tab-pane fade" id="pills-money" role="tabpanel" aria-labelledby="pills-money-tab">
 				<div style="height:270px;overflow-y:auto">
-					<table class="table table-bordered">
+					<table class="table table-bordered" id="listTableAttend22">
 						<thead>
 							<th>이름</th>
 							<th>전화번호</th>
@@ -444,94 +302,7 @@
 							<th>참석방법</th>
 						</thead>
 						<tbody>
-						<tr>
-							<td>홍길동</td>
-							<td>010-1234-5678</td>
-							<td>Kim.bugking@gmail.com</td>
-							<td>123456789012</td>
-							<td>예</td>
-							<td>대화참여</td>
-							<td></td>
-							<td></td>
-							<td>Phone</td>
-						</tr>
-						<tr>
-							<td>홍길동</td>
-							<td>010-1234-5678</td>
-							<td>Kim.bugking@gmail.com</td>
-							<td>123456789012</td>
-							<td>예</td>
-							<td>대화참여</td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
+						
 						<!-- 데이터가 없을 경우 ->
 						<tr>
 							<td colspan="9" class="no-data-cell">데이터가 없습니다.</td>
@@ -552,28 +323,25 @@
 					<tr>
 						<th><button type="button" class="btn btn-sm btn-ty02">참석자명</button></th>
 						<td>
-							<input type="text" class="form-control form-control-sm" id="">
+							<input type="text" id="attendPhone" name="attendPhone" class="form-control form-control-sm">
 						</td>
 						<th>전화번호</th>
 						<td>
-							<input type="text" class="form-control form-control-sm" id="">
+							<input type="text" id="attendPhone" name="attendPhone" class="form-control form-control-sm">
 						</td>
 						<th>이메일</th>
 						<td>
-							<input type="text" class="form-control form-control-sm" id="">
+							<input type="text" id="attendEmail" name="attendEmail" class="form-control form-control-sm">
 						</td>
 					</tr>
 					<tr>
 						<th>PIN 번호</th>
 						<td>
-							<input type="text" class="form-control form-control-sm" id="">
+							<input type="text" id="attendPin" name="attendPin" class="form-control form-control-sm">
 						</td>
 						<th>역할</th>
 						<td>
 							<select class="form-control form-control-sm">
-							  <option>옵션1</option>
-							  <option>옵션2</option>
-							  <option>...</option>
 							</select>
 						</td>
 						<th>참석모드</th>
@@ -600,24 +368,18 @@
 						<th>참석방법</th>
 						<td>
 							<select class="form-control form-control-sm">
-							  <option>옵션1</option>
-							  <option>옵션2</option>
-							  <option>...</option>
 							</select>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</div>
-			<div class="tab-pane fade" id="pills-member" role="tabpanel" aria-labelledby="pills-member-tab">
-				내용 미정
-			</div>
-
 			<p class="text-center">
-				<a href="" class="btn btn-md btn-gray"><i class="fas fa-arrow-circle-left"></i> 이전</a> <a href="" class="btn btn-md btn-gray">다음 <i class="fas fa-arrow-circle-right"></i></a> <span class="pull-right"><a href="" class="btn btn-lg btn-primary">수정 및 저장</a></span>
+				<a href="" class="btn btn-md btn-gray"><i class="fas fa-arrow-circle-left"></i> 이전</a> <a href="" class="btn btn-md btn-gray">다음 <i class="fas fa-arrow-circle-right"></i></a> <span class="pull-right"><a href="" class="btn btn-lg btn-primary">수정</a></span>
 			</p>
 		</div>
 		
 	</div><!--//page-inner-->
 </div>
+<script type="text/javascript" src="/resources/js/ntcs/reservation/management/reservationManagement.js"></script>
 <!-- content 끝 -->

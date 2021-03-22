@@ -13,11 +13,11 @@
 		module.exports = factory( require( "jquery" ) );
 	} else {
 		factory( jQuery );
-	}
+	} 
 }(function( $ ) {
-
+ 
 $.extend( $.fn, {
-
+ 
 	// http://jqueryvalidation.org/validate/
 	validate: function( options ) {
 
@@ -349,7 +349,7 @@ $.extend( $.validator, {
 	},
 
 	messages: {
-		required: "필수 입력 사항입니다.",
+		required: "",
 		remote: "Please fix this field.",
 		email: "이메일 형식이 잘못되었습니다.",
 		url: "Please enter a valid URL.",
@@ -925,10 +925,10 @@ $.extend( $.validator, {
 			} else {
 
 				// Create error element
-				error = $( "<" + this.settings.errorElement + ">" )
-					.attr( "id", elementID + "-error" )
-					.addClass( this.settings.errorClass )
-					.html( message || "" );
+				//error = $( "<" + this.settings.errorElement + ">" )
+				//	.attr( "id", elementID + "-error" )
+				//	.addClass( this.settings.errorClass )
+				//	.html( message || "" );
 
 				// Maintain reference to the element to be placed into the DOM
 				place = error;

@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private  MessageSource messageSource;
   private com.knc.ntcs.core.config.security.service.UserFindService UserFindService;
   private  String[] PUBLIC = new String[]{
-          "/error", "/error/**", "/login", "/main/**","/Member/**", "/account","/Conference/**","/Customer/**","/Bill/**", "/Reservation/**", "/Product/**","/Management/**","/management/**", "/index", "/cache/**", "/rule/**",  "/json/**", "/security/**"
+          "/error", "/error/**", "/login/**", "/main/**","/Member/**", "/account","/Conference/**","/Customer/**","/Bill/**", "/Reservation/**", "/Product/**","/Management/**","/management/**", "/index", "/cache/**", "/rule/**",  "/json/**", "/security/**"
   };
 
   private  String[] PUBLIC_WEB = new String[]{

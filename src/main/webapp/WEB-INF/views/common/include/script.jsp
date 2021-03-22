@@ -29,6 +29,7 @@
     <!-- DataTables -->
     <script src="/resources/js/datatables/jquery.dataTables.min.js"></script>
     <script src="/resources/js/datatables/dataTables.bootstrap4.min.js"></script>   
+    <script src="/resources/js/datatables/dataTables-lang.js"></script>   
      
 	<!-- Bootstrap Notify -->
 	<script src="/resources/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
@@ -43,9 +44,6 @@
 	<%-- Validator Plugin  --%>
 	<script src="/resources/js/validator/jquery.validate.js" ></script>
 	<script src="/resources/js/validator/additional-methods.js" ></script>    
-   
-    <%-- iframe --%>
-    <script src="/resources/js/plugin/iframe/jquery.iframe.js" ></script>    
 
 	<%-- moment --%>
 	<script src="/resources/js/moment.js" ></script>   

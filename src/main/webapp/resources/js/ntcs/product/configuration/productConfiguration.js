@@ -17,50 +17,70 @@ $(document).ready(function() {
 
 var ntcsObj = {
 	init : function() {
-		//ntcsObj.grid();
+		ntcsObj.grid();
 	},
 	grid : function() {
-	
+
         // 목록조회
 		var dataTableListOption = {
-				pageLength: 10,
-				autoWidth: true,
-		        bPaginate: false,
-		        searching : false,
-		        select : false,
+				pageLength: 100, 
+	            bInfo: false,
+	            paging: false,             
+	            bPaginate: false,				
+				autoWidth: false,
 		        bLengthChange: true,
-		     //   bAutoWidth: false,
 		        processing: true, 
-		     //   ordering: false,
+		        ordering: false,
 		        serverSide: false,
 		        searching: false,
+		        language : lang_kor,
 		        ajax : {
-		            "url":"/resources/json/conference/history/list.json",  
+		        	"url":"/resources/json/product/configuration/list.json",  
+		            //"url":"/management/user/list",  
 		            "type":"GET",
+		            "dataSrc" : function(res) {
+		            	return res.messageBody.data;
+		            },
 		            "data": function (d) {
-		            	
+		            	d['prodKdCd'] = $('#srchProdKdCd').val();
+		            	d['svcDomain'] = $('#srchSvcDomain').val();
+		            	d['X-AUTH-TOKEN'] = '';
 		            }
 		        },
-		         columns : [
-		             {data: "svcConfCate"},
-		             {data: "svcResvRd"},
-		             {data: "attendName"},
-		             {data: "memberId"},
-		             {data: "svcName"},
-		             {data: "svcConfCime"},
-		             {data: "svcConfCuration"},
-		             {data: "svcConfMaxCarties"},
-		             {data: "svcConfCarties"},
-		             {data: "svcConfCpdate"}
-		         ],
+		        aoColumns: [
+		        	{data: "ftrCd", name: "ftrCd", defaultContent: ""}, 
+		        	{data: "ftrNm", name: "ftrNm", defaultContent: ""},
+		        	{data: "initRateAplyUnitCd", name: "initRateAplyUnitCd", defaultContent: ""},
+		        	{data: "initRateAplyUnitNm", name: "initRateAplyUnitNm", defaultContent: ""},
+		        	{data: "initRateAplyUnit", name: "initRateAplyUnit", defaultContent: ""},
+		        	{data: "initRate", name: "initRate", defaultContent: "", class : "text-right"}
+		        	
+		        ],
 				columnDefs: [
-						{ orderable: true,	className: 'dt-text-left',		targets: '_all' }
+					{ targets: [0,2], visible : false  },
+					{ targets: [5],render: $.fn.dataTable.render.number( ',') } 
+										
 				],
+				drawCallback: function( settings ) {
+
+				  	var api = this.api();
+		        
+			        var pageInfo = this.api().page.info();
+			        var page = pageInfo.page;
+			        
+			        ntcsNoData(this.api());
+			        
+			    	//console.log('page Info :::: ', pageInfo);
+			 		//console.log('데이터 ',api.rows().data().length);	        
+				}
 			};
 			
-			//dataTableList = $('#listTable').DataTable(dataTableListOption);		
+			dataTableList = $('#listTable').DataTable(dataTableListOption);			
+	
 	},
-	search : function() {
-		
+	// 조회
+	search : function() { 
+	 	$('#listTable').DataTable().clear();
+	    $('#listTable').DataTable().ajax.reload();			
 	}
 }

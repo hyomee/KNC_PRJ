@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<head>
 
-    <script type="text/javascript" src="/resources/js/ntcs/customer/management/customerManagement.js"></script>
-
-</head> 
 <!-- contents 시작 -->
 <div class="content">
 	<div class="page-inner">
@@ -31,7 +27,7 @@
 			<span class="pull-right"><a href="#" class="btn btn-primary btn-round btn-xs">+신규등록</a></span>
 		</div>
 		
-		<table class="table table-bordered mt-3">
+		<table class="table table-bordered mt-4">
 			<tbody>
 				<tr>
 					<th scope="col" width="80">검색</th>
@@ -49,7 +45,9 @@
 								<input type="text" id="" name="" class="form-control form-control-sm">		
 							<label class="mr-2 ml-2"> 고객명 </label>
 								<input type="text" id="" name="" class="form-control form-control-sm">
+								<span class="pull-right"><!-- 2021-02-19 버튼 오른쪽 정렬 -->
 								<button type="button" class="btn btn-sm btn-primary ml-3" onClick="ntcsObj.search()"><i class="fas fa-search text-white"></i> 조회</button>
+								</span>
 						</div>
 						</form>
 					</td>
@@ -63,12 +61,16 @@
 			
 			<table class="table table-hover table-bordered" id="custDataTable">
 				<thead>
+					<th>고객ID</th>
 					<th>고객명</th>
+					<th>고객유형(코드)</th>
 					<th>고객유형</th>
+					<th>고객구분(코드)</th>
 					<th>고객구분</th>
 					<th>주민/법인번호</th>
 					<th>사업자등록번호</th>
 					<th>대표 전화번호</th>
+					<th>상태(코드)</th>
 					<th>상태</th>
 					<th>등록/해지일</th>
 				</thead>
@@ -142,7 +144,7 @@
 						<td><input type="text" id="corpRegNo" name="corpRegNo" class="form-control form-control-sm"></td>
 						<th><span class="ess-mark">*</span><!-- 고객유형이 개인이 아닌 경우 필수입력 항목 -->사업자등록번호</th>
 						<td class="text-left"><input type="text" id="bizRegNo" name="bizRegNo" class="form-control form-control-sm required"></td>
-						<th>대표전화번호</th>
+						<th>전화번호</th>
 						<td><input type="text" id="telNo" name="telNo" class="form-control form-control-sm url2"></td>
 					</tr>
 					<tr>
@@ -181,24 +183,18 @@
 						<td colspan="5"><input type="text" id="txtDtlAddr" name="txtDtlAddr" class="form-control form-control-sm"></td>
 					</tr>
 					<tr>
-						<th>전화번호</th>
-						<td><input type="text" id="telNo" name="telNo" class="form-control form-control-sm"></td>
+						<th><span class="ess-mark">*</span><!-- ess-mark 필수입력항목 스타일 -->사용자명</th>
+						<td class="text-left"><input type="text" id="custName" name="custName" class="form-control form-control-sm required"></td>
 						<th>팩스번호</th>
 						<td><input type="text" id="faxNo" name="faxNo" class="form-control form-control-sm"></td>
 						<th>휴대폰번호</th>
 						<td><input type="text" id="txtMtelNo" name="txtMtelNo" class="form-control form-control-sm"></td>
 					</tr>
 					<tr>
-						<th><span class="ess-mark">*</span><!-- ess-mark 필수입력항목 스타일 -->사용자명</th>
-						<td class="text-left"><input type="text" id="custName" name="custName" class="form-control form-control-sm required"></td>
 						<th><span class="ess-mark">*</span><!-- ess-mark 필수입력항목 스타일 -->E-Mail</th>
-						<td class="text-left"><input type="email" id="email" name="email" class="form-control form-control-sm required"></td>
-						<th><span class="ess-mark">*</span><!-- ess-mark 필수입력항목 스타일 -->연락처</th>
-						<td class="text-left"><input type="text" id="telNo2" name="telNo2" class="form-control form-control-sm required"></td>
-					</tr>
-					<tr>
-						<th>판매채널</th>
-						<td colspan="5">
+						<td class="text-left"><input type="text" id="email" name="email" class="form-control form-control-sm required"></td>
+						<th><span class="ess-mark">*</span><!-- ess-mark 필수입력항목 스타일 -->판매채널</th>
+						<td colspan="3">
 							<select id="" name="" class="form-control form-control-sm" style="width:23%;">
 							  <option>선택하세요.</option>
 							  <option>옵션1</option>
@@ -207,6 +203,7 @@
 							</select>
 						</td>
 					</tr>
+					
 					</tbody>
 				</table>
 				</form>
@@ -302,17 +299,11 @@
 						<th>통화코드</th>
 						<td>
 							<select id="billCurCd" name="billCurCd" class="form-control form-control-sm">
-							  <option>KRW</option>
-							  <option>옵션2</option>
-							  <option>...</option>
 							</select>
 						</td>
 						<th>환율반영일</th>
 						<td>
 							<select id="exrateRfctDd" name="exrateRfctDd" class="form-control form-control-sm">
-							  <option>매월 1일</option>
-							  <option>옵션2</option>
-							  <option>...</option>
 							</select>
 						</td>
 						<th>고정환율</th>
@@ -326,15 +317,11 @@
 						<th>납부방법</th>
 						<td>
 							<select id="pymKdCd" name="pymKdCd" class="form-control form-control-sm">
-							  <option value="1">자동이체</option>
-							  <option value="2">옵션2</option>
 							</select>
 						</td>
 						<th>결제일자</th>
 						<td>
 							<select id="pymDdt" name="pymDdt" class="form-control form-control-sm">
-							  <option value="1">매월 5일</option>
-							  <option value="2">매월 31일</option>
 							</select>
 						</td>
 					</tr>
@@ -374,8 +361,8 @@
 								  <option>마케팅</option>
 								  <option>옵션2</option>
 								  <option>...</option>
-								</select>
-								<a href="#" class="btn btn-primary btn-round btn-xs">+신규등록</a>
+								</select>   
+								<a href="#" data-toggle="modal" onClick="ntcsObj.detail.memberInfoPopup()" class="btn btn-primary btn-round btn-xs">+신규등록</a>
 							</div>
 						</td>
 					</tr>
@@ -411,8 +398,8 @@
 					<tr>
 						<td colspan="6">
 							<div class="input-group mt-2 mb-2">
-								<a href="#" class="btn btn-primary btn-round btn-xs">DNIS 등록</a>
-							</div>
+								<a href="#" data-toggle="modal" onClick="ntcsObj.detail.dnisModalPopup()" class="btn btn-primary btn-round btn-xs">DNIS 등록</a>
+							</div>  
 							
 							<div "no-row-space" style="height:270px;overflow-y:auto;">
 								<table class="table table-bordered" id="dnisInfoDataTable" style="width:100%">
@@ -440,7 +427,7 @@
 			<p class="text-center">
 				<a href="#" onClick="ntcsObj.detail.btnPrev()" class="btn btn-md btn-gray"><i class="fas fa-arrow-circle-left"></i> 이전</a> 
 				<a href="#" onClick="ntcsObj.detail.btnNext()" class="btn btn-md btn-gray">다음 
-				<i class="fas fa-arrow-circle-right"></i></a> <span class="pull-right"><a href="#" onclick="ntcsObj.detail.customerInfoSave()" class="btn btn-md btn-primary">수정 및 저장</a></span>
+				<i class="fas fa-arrow-circle-right"></i></a> <span class="pull-right"><a href="#" onclick="ntcsObj.detail.customerInfoSave()" class="btn btn-md btn-primary">수정</a></span>
 			</p>
 		</div>
 		
@@ -451,6 +438,12 @@
 	<input type="hidden" id="custTabId" name="custTabId" value="pills-profile-tab"/>
 	<input type="hidden" id="custTabIdx" name="custTabIdx" value="0"/>
 </form>
+
+<!-- modal -->
+<%@ include file="/WEB-INF/views/customer/management/customerManagementMiModal.jsp" %>
+<%@ include file="/WEB-INF/views/customer/contract/customerContractDnisModal.jsp" %>
+
+<script type="text/javascript" src="/resources/js/ntcs/customer/management/customerManagement.js"></script>
 
 		
 		

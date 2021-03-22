@@ -1,0 +1,17 @@
+{
+	"messageBody": {
+	
+	    "recordsTotal": 1,
+	    "recordsFiltered": 1,
+		"data": [{
+			"prodName" : "임원회의",
+			"ctrtName" : "IR-100",
+			"svcProdDvCd" : "1",
+			"svcProdDvNm" : "메인상품",
+			"svcSttsCd" : "1",
+			"svcSttsNm" : "사용중",
+			"valdStrtDttm" : "2020-01-01",
+			"valdEndDttm" : "2099-12-31"
+		}]	
+	}
+} 

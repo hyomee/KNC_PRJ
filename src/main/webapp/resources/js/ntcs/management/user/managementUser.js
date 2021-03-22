@@ -1,5 +1,6 @@
 var dataTableList;
 var view$;
+var modalView$;
 var gridWidth = 0;
 
 $(document).ready(function() {	
@@ -27,10 +28,10 @@ $(document).ready(function() {
 		$('#mtelNo').val(datas.mtelNo);
 		$('#eMail').val(datas.eMail);
 		$("#useYn option[value='" + datas.useYn + "']").attr("selected","selected");		
-		
+		$('#btnModify').show();
      	event.stopPropagation();
   	});	
-	
+	 
 });	 
 
 var ntcsObj = {
@@ -38,7 +39,7 @@ var ntcsObj = {
 		gridWidth = $('.content').width();
 		ntcsObj.grid();
 		view$ = ntcsToObj($('#userDetail'));
-		
+		$('#btnModify').hide();
 	},
 	grid : function() {
 	
@@ -53,7 +54,8 @@ var ntcsObj = {
 		        ordering: false,
 		        serverSide: false,
 		        searching: false,
-		        fixedColumns: true,
+		        language : lang_kor,
+		        responsive: true,
 		        ajax : {
 		        	"url":"/resources/json/management/user/list.json",  
 		            //"url":"/management/user/list",  
@@ -66,26 +68,25 @@ var ntcsObj = {
 		            	d['X-AUTH-TOKEN'] = '';
 		            }
 		        },
-		         columns : [
-		             {data: "userGroupId"},
-		             {data: "userId"},
-		             {data: "password"},
-		             {data: "userName"},
-		             {data: "mtelNo"},
-		             {data: "eMail"},
-		             {data: "useYn"}
-		         ],
+		        aoColumns: [
+		        	{data: "userGroupId", name: "userGroupId", defaultContent: ""},
+		        	{data: "userGroupNm", name: "userGroupNm", defaultContent: ""},
+		        	{data: "userId", name: "userId", defaultContent: ""},
+		        	{data: "password", name: "password", defaultContent: ""},
+		        	{data: "userName", name: "userName", defaultContent: ""},
+		        	{data: "mtelNo", name: "mtelNo", defaultContent: ""},
+		        	{data: "eMail", name: "eMail", defaultContent: ""},
+		        	{data: "useYn", name: "useYn", defaultContent: ""}
+		        ],
 				columnDefs: [
-					{ targets: 0, width:(gridWidth*(10/100)) },
-					{ targets: 1, width:(gridWidth*(15/100)) },  
-					{ targets: 2, width:(gridWidth*(15/100)) }, 
-					{ targets: 3, width:(gridWidth*(15/100)) }, 
-					{ targets: 4, width:(gridWidth*(15/100)) },
-					{ targets: 5, width:(gridWidth*(20/100)) },
-					{ targets: 6, width:(gridWidth*(9/100)) },
-					
-					
+					{ targets: 0, width:(gridWidth*(0/100)), visible : false  }
+										
 				],
+				drawCallback: function( settings ) {
+				 	ntcsNoData(this.api());
+			        var pageInfo = this.api().page.info();
+			        var page = pageInfo.page;				 	
+				}		
 			};
 			
 			dataTableList = $('#listTable').DataTable(dataTableListOption);		
@@ -94,7 +95,8 @@ var ntcsObj = {
 	, search : function() {
 	
 	 	$('#listTable').DataTable().clear();
-	    $('#listTable').DataTable().ajax.reload()		
+	    $('#listTable').DataTable().ajax.reload();
+	    $('#btnModify').hide();		
 	} 
 	// 상세
 	, info : function() {
@@ -124,36 +126,6 @@ var ntcsObj = {
 				}
 		});				
 	}
-	// 등록
-	, add : function() {
-	
-		var params = ntcsData(view$); 
-		params['operatorId'] = 'addUsers';
-		params['passwordChangePeriod'] = 0;
-		params['loginFailCount'] = 0;
-		
-		var messageData=[];
-		messageData.push({"message:data":params});
-		
-		var reqParams = requestParams(messageData);
-	
-		var returnVal = ntcsValidator("frmUser");
-    	if (!returnVal) return false;
-	
-		var url = '/management/user';	
-		$.ajax({ type: "PUT"
-				, contentType: "application/json"
-				, url: url
-				, data: reqParams
-				, dataType: 'json'
-				, success: function (json) { 
-					alert('성공');
-				}, error: function (e) {  
-					alert('실패');
-				}
-		});			
-	
-	}
 	// 수정
 	, modify : function() {
 	
@@ -181,5 +153,133 @@ var ntcsObj = {
 				}
 		});			
 	
-	}
+	},
+	// 사용자 등록  등록 팝업(Modal)
+	addUserModal : function() {
+		
+		modalView$ = ntcsToObj($('#divModalUser')); 
+	
+		$('.modal-header > h3').text('사용자 등록');
+		$('.modal-footer #btnModalConfirm').text('등록')   	
+
+		$('#modalAddUser').modal({backdrop: 'static', keyboard: false});	
+	
+		// 등록
+		$('#btnModalConfirm').on('click', function(){
+			
+			console.log('등록');
+			return false;
+
+			var params = ntcsData(view$); 
+			params['operatorId'] = 'addUsers';
+			params['passwordChangePeriod'] = 0;
+			params['loginFailCount'] = 0;
+			
+			var messageData=[];
+			messageData.push({"message:data":params});
+			
+			var reqParams = requestParams(messageData);
+		
+			var returnVal = ntcsValidator("frmUser");
+	    	if (!returnVal) return false;
+		
+			var url = '/management/user';	
+			$.ajax({ type: "PUT"
+					, contentType: "application/json"
+					, url: url
+					, data: reqParams
+					, dataType: 'json'
+					, success: function (json) { 
+						alert('성공');
+					}, error: function (e) {  
+						alert('실패');
+					}
+			});			
+		
+			ntcsReset($('#divModalUser'));	
+			ntcsValidationModalReset($('#divModalUser'));
+			ntcsUrl('/management/user');
+			
+			$('#modalAddUser').modal('hide');
+			
+		});
+		
+		// 닫기 
+		$('#btnModalClose').on('click', function(){
+					
+			ntcsReset($('#divModalUser'));
+			ntcsValidationModalReset($('#divModalUser'));
+		});	
+		
+	},
+	// 사용자 수정 팝업(Modal)
+	modifyUserModal : function() {
+		
+		modalView$ = ntcsToObj($('#divModalUser')); 
+		
+		// 사용자 등록정보 value
+		var params = ntcsData(view$); 
+		$.each(params, function(key,value) {
+           	$('.modal-body #'+key).val(value);
+        });			
+		
+		// 언어
+
+		$('.modal-header > h3').text('사용자 수정');
+		$('.modal-footer #btnModalConfirm').text('수정');
+
+		$('#modalAddUser').modal({backdrop: 'static', keyboard: false});	
+	
+		// 수정
+		$('#btnModalConfirm').on('click', function(){
+			
+			console.log('수정');
+			return false;
+
+			var params = ntcsData(view$); 
+			params['operatorId'] = 'addUsers';
+			params['passwordChangePeriod'] = 0;
+			params['loginFailCount'] = 0;
+			
+			var messageData=[];
+			messageData.push({"message:data":params});
+			
+			var reqParams = requestParams(messageData);
+		
+			var returnVal = ntcsValidator("frmUser");
+	    	if (!returnVal) return false;
+		
+			var url = '/management/user';	
+			$.ajax({ type: "PUT"
+					, contentType: "application/json"
+					, url: url
+					, data: reqParams
+					, dataType: 'json'
+					, success: function (json) { 
+						alert('성공');
+					}, error: function (e) {  
+						alert('실패');
+					}
+			});			
+		
+			ntcsReset($('#divModalUser'));	
+			ntcsValidationModalReset($('#divModalUser'));
+			ntcsUrl('/management/user');
+			
+			$('#modalAddUser').modal('hide');
+			
+		});
+		
+		// 닫기 
+		$('#btnModalClose').on('click', function(){
+					
+			ntcsReset($('#divModalUser'));
+			ntcsValidationModalReset($('#divModalUser'));
+		});	
+		
+	},
+		
+	
+	
+
 }

@@ -1,0 +1,19 @@
+{
+	"messageBody": {
+	
+	    "recordsTotal": 2,
+	    "recordsFiltered": 2, 
+		"data": [
+	      {
+			"custId":"C20000201",
+	        "custName":"콜투게더"
+	      },
+	      {
+			"custId":"C20000202",
+	        "custName":"홍길동"
+	      }
+		]
+	}
+} 
+
+					 

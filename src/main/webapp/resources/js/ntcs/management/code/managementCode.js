@@ -1,6 +1,7 @@
 var dataTableList;
 var search$;
 var view$;
+var modalView$;
 var gridWidth = 0;
 
 $(document).ready(function() {	
@@ -13,8 +14,8 @@ $(document).ready(function() {
     	$(this).addClass('selected');
     
 	 	var data=dataTableList.rows().data(); // 데이터 목록조회
-    	 var rowIdx = dataTableList.row(this).index(); // 상세조회 
-
+    	var rowIdx = dataTableList.row(this).index(); // 상세조회 
+  
      	var langType = data[rowIdx].langType;
      	var commonGroupCd = data[rowIdx].commonGroupCd;
      	var commonCd = data[rowIdx].commonCd;
@@ -23,13 +24,12 @@ $(document).ready(function() {
        	// ntcsObj.info(langType, commonGroupCd, commonCd);
 		// 데이터 연결되면 삭제 예정
 		$('#langType').val(langType);
-		$("#commonGroupCd option[value='1']").attr("selected","selected");
-		//$("#commonGroupCd option[value='" + commonGroupCd + "']").attr("selected","selected");
+		$("#commonGroupCd option[value='"+commonGroupCd+"']").attr("selected","selected");
 		$("#commonCd option[value='" + commonCd + "']").attr("selected","selected");
 		$('#commonCd').val();	
 		$('#commonCdNm').val(data[rowIdx].commonCdNm);
 		$('#codeDesc1').val(data[rowIdx].codeDesc1);		       
-      
+        $('#btnModify').show();
      	event.stopPropagation();
   	});		
 	
@@ -42,7 +42,7 @@ var ntcsObj = {
 	init : function() {
 		gridWidth = $('.content').width();
 		ntcsObj.grid();
-		dataTableList.columns([4]).header().to$().removeClass("text-left");
+		$('#btnModify').hide();
 	},
 	grid : function() {
 		
@@ -52,6 +52,7 @@ var ntcsObj = {
 	            bInfo: false,
 	            paging: false,             
 	            bPaginate: false,
+	            autoWidth: false,
 		        bLengthChange: true,
 		     //   bAutoWidth: false,
 		        processing: true, 
@@ -59,6 +60,11 @@ var ntcsObj = {
 		        serverSide: true, 
 		        searching: false,
 		        fixedColumns: true,
+		        language : lang_kor,
+		        responsive: true,
+			    colReorder: {
+			        'allowReorder': false
+			    },		        
 		        ajax : { 
 		            "url":"/management/code/list",  
 		            "type":"GET",
@@ -71,27 +77,26 @@ var ntcsObj = {
 		            	d['X-AUTH-TOKEN'] = '';
 		            }
 		        },
-		         columns : [ 
-		         	{data : "langType", hidden : true},
-					{data : "commonGroupCd"},
-					{data : "commonCd"},
-					{data : "commonCdNm"},
-					{data : "codeDesc1"}
+		        aoColumns: [
+		         	{data: "langType", name: "langType", defaultContent: ""},
+					{data: "commonGroupCd", name: "commonGroupCd", defaultContent: ""},
+					{data: "commonGroupCdNm", name: "commonGroupCdNm", defaultContent: "",width:(gridWidth*(20/100))},
+					{data: "commonCd", name: "commonCd", defaultContent: "", width:(gridWidth*(10/100))},
+					{data: "commonCdNm", name: "commonCdNm", defaultContent: "", width:(gridWidth*(20/100))},
+					{data: "codeDesc1", name: "codeDesc1", defaultContent: "", class : "text-left", width:(gridWidth*(50/100))},
 		         ],
 				columnDefs: [
-					{ targets: 0, visible : false  },
-					{ width:(gridWidth*(15/100)), targets: 1  },
-					{ width:(gridWidth*(15/100)), targets: 2 },
-					{ width:(gridWidth*(30/100)), targets: 3 },
-					{ width:(gridWidth*(60/100)), targets: 4, className: 'text-left' }
-				//	{ orderable: true,	className: 'dt-text-left',		targets: '_all' }
+					{ targets : [0,1], visible : false }
 				],
+				drawCallback: function( settings ) {
+				 	ntcsNoData(this.api());
+				}
 			};
 			
 			dataTableList = $('#listTable').DataTable(dataTableListOption);		
-	}
+	},
 	// 코드그룹(combobox)
-	, codeGroup : function() {
+	codeGroup : function() {
 		
 		//var params = ntcsData(view$); 
 		//params['langType'] = 'KOR';
@@ -113,14 +118,15 @@ var ntcsObj = {
 		});			
 		
 		
-	}
+	},
 	// 조회
-	, search : function() { 
+	search : function() { 
 	 	$('#listTable').DataTable().clear();
-	    $('#listTable').DataTable().ajax.reload();		
-	}
+	    $('#listTable').DataTable().ajax.reload();	
+	    $('#btnModify').hide();	
+	},
 	// 상세
-	, info : function(langType,commonGroupCd,commonCd) {
+	info : function(langType,commonGroupCd,commonCd) {
 		
 		var params = {};
 		params['langType'] = langType; 
@@ -150,9 +156,9 @@ var ntcsObj = {
 				}
 		});			
 	
-	}
+	},
 	// 수정
-	, modify : function() {
+	modify : function() {
 
 		var params = ntcsData(view$); 
 		params['operatorId'] = 'updateAccount';
@@ -181,36 +187,138 @@ var ntcsObj = {
 				}
 		});		
 
-	}
-	, // 등록
-	add : function() {
-		var params = ntcsData(view$); 
-		params['langType'] = 'KOR';
-		params['operatorId'] = 'addCommonCode';
-		params['codeDesc2'] = '';
-		params['codeDesc3'] = '';
-		params['useYn'] = 'Y';
-		
-		var messageData=[];
-		messageData.push({"message:data":params});
-		
-		var reqParams = requestParams(messageData);
+	},
+	// 공통코드 등록 팝업(Modal)
+	addCommonCodeModal : function() {
 
-		var returnVal = ntcsValidator("frmcode");
-    	if (!returnVal) return false;
+		modalView$ = ntcsToObj($('#divModalCommonCode')); 
+		
+		// 언어
+		var langTypeList = [{cd:'KOR', nm: '한국어'}];
+		ntcsCombo($('#divModalCommonCode'), 'langType', null, langTypeList, '전체', 0);	
+
+		$('.modal-header > h3').text('공통코드 등록');
+		$('.modal-footer #btnModalConfirm').text('등록')
+
+		$('#modalAddCommonCode').modal({backdrop: 'static', keyboard: false});	
 	
-		var url = '/management/code';	
-		$.ajax({ type: "POST"
-				, contentType: "application/json"
-				, url: url
-				, data: reqParams
-				, dataType: 'json'
-				, success: function (json) { 
-					alert('저장되었습니다.');
-				}, error: function (e) {  
-					alert('저장에 실패하였습니다.');
-				}
-		});		
-	}
+		// 등록
+		$('#btnModalConfirm').on('click', function(){
+			
+			var returnVal = ntcsValidator("frmModalCommonCode");
+	    	if (!returnVal) return false;		
+			
+			// 저장 로직 추가해야 함.
+
+			var params = ntcsData(modalView$); 
+
+			params['operatorId'] = 'addCommonCode';
+			params['useYn'] = 'Y';
+			
+			var messageData=[];
+			messageData.push({"message:data":params});
+			
+			var reqParams = requestParams(messageData);
+	
+			console.log('공통코드 등록 ',reqParams);
+	
+			var url = '/management/code';	
+			$.ajax({ type: "POST"
+					, contentType: "application/json"
+					, url: url
+					, data: reqParams
+					, dataType: 'json'
+					, success: function (json) { 
+						alert('저장되었습니다.');
+					}, error: function (e) {  
+						alert('저장에 실패하였습니다.');
+						
+					}
+			});					
+			
+			ntcsReset($('#divModalCommonCode'));	
+			ntcsValidationModalReset($('#divModalCommonCode'));
+			ntcsUrl('/management/code');
+			
+			$('#modalAddCommonCode').modal('hide');
+			
+		});
+		
+		// 닫기 
+		$('#btnModalClose').on('click', function(){
+			ntcsReset($('#divModalCommonCode'));
+			ntcsValidationModalReset($('#divModalCommonCode'));
+		});	
+		
+	},
+	// 공통코드 수정 팝업(Modal)
+	modifyCommonCodeModal : function() {
+
+		modalView$ = ntcsToObj($('#divModalCommonCode')); 
+		
+		// 공통코드 등록정보 value
+		var params = ntcsData(view$); 
+		$.each(params, function(key,value) {
+           	$('.modal-body #'+key).val(value);
+        });		
+		
+		// 언어
+		var langTypeList = [{cd:'KOR', nm: '한국어'}];
+		ntcsCombo($('#divModalCommonCode'), 'langType', null, langTypeList, '전체', 0);	
+
+		$('.modal-header > h3').text('공통코드 수정');
+		$('.modal-footer #btnModalConfirm').text('수정')
+
+		$('#modalAddCommonCode').modal({backdrop: 'static', keyboard: false});	
+	
+		// 등록
+		$('#btnModalConfirm').on('click', function(){
+			
+			var returnVal = ntcsValidator("frmModalCommonCode");
+	    	if (!returnVal) return false;		
+			
+			// 저장 로직 추가해야 함.
+
+			var params = ntcsData(modalView$); 
+
+			params['operatorId'] = 'addCommonCode';
+			params['useYn'] = 'Y';
+			
+			var messageData=[];
+			messageData.push({"message:data":params});
+			
+			var reqParams = requestParams(messageData);
+	
+			
+			var url = '/management/code';	
+			$.ajax({ type: "POST"
+					, contentType: "application/json"
+					, url: url
+					, data: reqParams
+					, dataType: 'json'
+					, success: function (json) { 
+						alert('저장되었습니다.');
+					}, error: function (e) {  
+						alert('저장에 실패하였습니다.');
+						
+					}
+			});					
+			
+			ntcsReset($('#divModalCommonCode'));	
+			ntcsValidationModalReset($('#divModalCommonCode'));
+			ntcsUrl('/management/code');
+			
+			$('#modalAddCommonCode').modal('hide');
+			
+		});
+		
+		// 닫기 
+		$('#btnModalClose').on('click', function(){
+			ntcsReset($('#divModalCommonCode'));
+			ntcsValidationModalReset($('#divModalCommonCode'));
+		});	
+		
+	}	
+	
 	
 }

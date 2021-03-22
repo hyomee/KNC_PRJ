@@ -16,8 +16,8 @@ var ntcsObj = {
       /*  className colors
 		
       className: default(transparent), important(red), chill(pink), success(green), info(blue)
-		
-      */
+		 
+      */ 
       /* initialize the external events
       -----------------------------------------------------------------*/
       $('#external-events div.external-event').each(function() {
@@ -62,6 +62,7 @@ var ntcsObj = {
         allDaySlot: false,
         selectHelper: true,
         select: function(start, end, allDay) {
+        	return false;
           var title = prompt('Event Title:');
           if (title) {
             calendar.fullCalendar('renderEvent', {
@@ -173,5 +174,9 @@ var ntcsObj = {
 				}
 		});	
 
-	}
+	},
+	// 고객명 모달 팝업
+	custNameModal : function(custId) {
+		custNameModalPopup(custId);
+	}	
 }

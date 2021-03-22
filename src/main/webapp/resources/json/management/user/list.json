@@ -4,7 +4,8 @@
 	    "recordsTotal": 5,
 	    "recordsFiltered": 5,
 		"data": [{
-			"userGroupId":"운영그룹",
+			"userGroupId":"1",
+			"userGroupNm":"운영그룹",
 	        "userId":"admin",
 	        "password":"admin",
 	        "userName":"콜투게더",
@@ -13,7 +14,8 @@
 	        "useYn":"활성"
 	      },
 	      {
-			"userGroupId":"운영그룹",
+			"userGroupId":"1",
+			"userGroupNm":"운영그룹",
 	        "userId":"admindev",
 	        "password":"admindev",
 	        "userName":"콜투게더개발팀",
@@ -22,7 +24,8 @@
 	        "useYn":"활성"
 	      },
 	      {
-			"userGroupId":"운영그룹",
+			"userGroupId":"1",
+			"userGroupNm":"운영그룹",
 	        "userId":"admininsa",
 	        "password":"admininsa",
 	        "userName":"콜투게더인사팀",
@@ -31,7 +34,8 @@
 	        "useYn":"활성"
 	      },
 	      {
-			"userGroupId":"운영그룹",
+			"userGroupId":"1",
+			"userGroupNm":"운영그룹",
 	        "userId":"knc",
 	        "password":"knc",
 	        "userName":"케이앤씨",
@@ -40,7 +44,8 @@
 	        "useYn":"활성"
 	      },
 	      {
-			"userGroupId":"운영그룹",
+			"userGroupId":"1",
+			"userGroupNm":"운영그룹",
 	        "userId":"cnntech",
 	        "password":"cnntech",
 	        "userName":"씨엔엔테크",

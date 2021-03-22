@@ -17,15 +17,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class TsyUserService {
 
-  private TsyUserRepository tsyUserRepository;
-  private TsyUserMapper tsyUserMapper;
+  private final TsyUserRepository tsyUserRepository;
+
 
 
   public TsyUserDto loginProcess(LoginRequestDTO loginRequestDTO, ComInfoDTO comInfoDTO)  {
 
     RequestUtils.printRchRequestHeader();
     TsyUserEntity tsyUserEntity = tsyUserRepository.findByUserIdAndPassword(loginRequestDTO.getUserId(), loginRequestDTO.getPassword());
-    TsyUserDto tsyUserResDto = tsyUserMapper.toTsyUserDto(tsyUserEntity);
+    TsyUserDto tsyUserResDto = TsyUserMapper.TsyUserINSTANCE.toTsyUserDto(tsyUserEntity);
     return tsyUserResDto;
   }
 
@@ -34,10 +34,10 @@ public class TsyUserService {
   public TsyUserDto saveTsyUser(TsyUserDto tsyUserDto,
                                 ComInfoDTO comInfoDTO) throws Exception {
     log.debug("=== ctl :: saveCustM : " + tsyUserDto.toString());
-    TsyUserEntity tsyUserEntity = tsyUserMapper.toTsyUserEntity(tsyUserDto);
+    TsyUserEntity tsyUserEntity = TsyUserMapper.TsyUserINSTANCE.toTsyUserEntity(tsyUserDto);
     tsyUserEntity.setControllField(comInfoDTO.getControllFieldDTO());
     tsyUserRepository.save(tsyUserEntity);
-    TsyUserDto tsyUserResDto = tsyUserMapper.toTsyUserDto(tsyUserEntity);
+    TsyUserDto tsyUserResDto = TsyUserMapper.TsyUserINSTANCE.toTsyUserDto(tsyUserEntity);
     return tsyUserResDto;
   }
 }

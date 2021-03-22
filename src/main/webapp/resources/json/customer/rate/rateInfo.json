@@ -1,0 +1,17 @@
+{
+	"messageBody": {
+	
+	    "recordsTotal": 1,
+	    "recordsFiltered": 1,
+		"data": [{
+			"rateDvCd" : "1",
+			"rateDvNm" : "기본료",
+			"rateAplyUnitCd" : "1",
+			"rateAplyUnitNm" : "금액",
+			"rateAplyUnit" : "원",
+			"rate" : "15000",
+			"valdStrtDttm" : "2020-01-01",
+			"valdEndDttm" : "2099-12-31"
+		}]	
+	}
+} 

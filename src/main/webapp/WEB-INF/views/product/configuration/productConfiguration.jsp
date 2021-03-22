@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<head>
-<script type="text/javascript" src="/resources/js/product/management/productConfiguration.js"></script>
-</head>
 
 <!-- content 시작 -->
 <div class="content">
@@ -39,19 +36,17 @@
 						<div class="input-group">
 							<label class="mr-2 ml-2"> 판매채널 </label>
 							<select class="form-control">
-							  <option>콜투게더</option>
-							  <option>옵션2</option>
 							</select>
 							<label class="mr-2 ml-2"> 서비스 도메인 </label>
-							<select class="form-control">
-							  <option>기본</option>
-							  <option>프로</option>
-							  <option>비지니스</option>
+							<select id="srchSvcDomain" name="srchSvcDomain" class="form-control">
 							</select>
 							<label class="mr-2 ml-2 text-info"> 주상품명 </label>
-							<input type="text" class="form-control" id="" value="IR_100" />
-							<button type="button" class="btn btn-sm btn-primary ml-3"><i class="fas fa-search text-white"></i> 조회</button>
+							<input type="text" id="srchProdName" name="srchProdName" class="form-control" value="" />
 						</div>
+						<span class="pull-right"><!-- 2021-02-19 버튼 오른쪽 정렬 -->
+						<button type="button" onCLick="ntcsObj.search()" class="btn btn-sm btn-primary ml-3"><i class="fas fa-search text-white"></i> 조회</button>
+						</span>						
+						</form>
 					</td>
 				</tr>
 			</tbody>
@@ -62,66 +57,24 @@
 			</h3>
 		</div>
 		<div class="no-row-space" style="max-height:400px;overflow-y:auto"><!-- 2021-02-04 no-row-space 클래스명 추가시 스크롤 처리 -->
-			<div class="row">
-				<table class="table table-hover table-bordered">
-					<thead>
-						<th>서비스그룹</th>
-						<th>적용코드</th>
-						<th>적용단위</th>
-						<th>서비스 요금</th>
-					</thead>
-					<tbody>
-					<tr>
-						<td>요금정책</td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>기본료</td>
-						<td>월</td>
-						<td>원</td>
-						<td>1,000,000</td>
-					</tr>
-					<tr>
-						<td>무료서비스</td>
-						<td>시간</td>
-						<td>분</td>
-						<td>500</td>
-					</tr>
-					<tr>
-						<td>선택상품</td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>통역</td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>녹취</td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>운영지원</td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<!-- 데이터가 없을 경우 ->
-					<tr>
-						<td colspan="4" class="no-data-long">데이터가 없습니다.</td>
-					</tr -->
-					</tbody>
-				</table>
-			</div>
+			<table class="table table-hover table-bordered" id="listTable">
+				<thead>
+					<th>서비스그룹(코드)</th>
+					<th>서비스그룹</th>
+					<th>적용코드(코드)</th>
+					<th>적용코드</th>
+					<th>적용단위</th>
+					<th style="text-align: center !important;">서비스 요금</th>
+				</thead>
+				<!-- 데이터가 없을 경우 ->
+				<tr>
+					<td colspan="4" class="no-data-long">데이터가 없습니다.</td>
+				</tr -->
+				</tbody>
+			</table>
 		</div><!--//table-->
 
 	</div><!--//page-inner-->
 </div>
+<script type="text/javascript" src="/resources/js/ntcs/product/configuration/productConfiguration.js"></script>
 <!-- content 끝 -->

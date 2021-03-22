@@ -1,0 +1,28 @@
+{
+	"messageBody": {
+	
+	    "recordsTotal": 2,
+	    "recordsFiltered": 2,
+		"data": [{
+			"column1":"2021-02-01",
+			"column2":"주간보고",
+			"column3":"150000",
+	        "column4":"30000",
+	        "column5":"0",
+	        "column6":"120000",
+	        "column7":"12000",
+	        "column8":"132000"
+	      }, {
+			"column1":"2021-02-25",
+			"column2":"월간보고",
+			"column3":"150000",
+	        "column4":"30000",
+	        "column5":"0",
+	        "column6":"130000",
+	        "column7":"13000",
+	        "column8":"143000"
+	      }    
+		]	
+	}
+}
+  

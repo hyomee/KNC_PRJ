@@ -1,234 +1,107 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<head>
-
-<link rel="stylesheet" type="text/css" href="/resources/css/jqgrid/ui.jqgrid.css" />
-
-<script src="/resources/js/jquery-3.5.1.js" type="text/javascript"></script>
-<script src="/resources/js/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-
-var userTable; 
-
-$(document).ready(function(){
-	
-	fnSearch();
-	
-});
-
-function fnSearch() {
-	
-	var option = {
-			pageLength: 10,
-            bPaginate: false,
-            searching : false,
-            bLengthChange: true,
-            bAutoWidth: false,
-            processing: true,
-            ordering: false,
-            serverSide: false,
-            searching: false,
-            ajax : {
-                "url":"/Member/ContactSales/List",
-                "type":"GET",
-                "data": function (d) {
-                	
-                }
-            },
-            columns : [
-                {data: "usrId"},
-                {data: "usrEmail"},
-                {data: "scrbDttm"},
-                {data: "tmntDttm"},
-                {data: "usrStat"},
-                {data: "switchFlag"},
-                {data: "creationDate"},
-                {data: "custId"},
-                {data: "switchManager"},
-                
-            ]			
-	};
-
-	userTable = $('#userTable').DataTable(option);	
-	
-}
-
-</script>
-</head>
-				<div class="contents">
-					<div class="container-fluid">
-						<h2>
-							<strong>회원관리</strong> <span class="f16 text-muted">User Management</span>
-						</h2>
-
-						<div class="card bg-wsky">
-							<div class="content">
-								<form class="form-inline">
-									<div class="form-group">
-										<label>회원유형</label>
-											<select id="srchUsrType" name="srchUsrType" class="form-control" style="min-width:200px;">
-											  <option value="1">정회원</option>
-											  <option value="2">준회원</option>
-											  <option value="3">임시회원</option>
-											</select>
-										<button type="button" id="btnSearch" onclick="fnSearch()" class="btn btn-primary">조회</button>
-									</div>
-								</form>
-							</div><!--header-->
-						</div>
-						<!--//row-->
-						<div class="card">
-							<div class="header">
-								<h4 class="title">회원 정보</h4>
+<!-- content 시작 -->
+<div class="content">
+	<div class="page-inner">
+		<div class="page-header">
+			<h4 class="page-title"><i class="fas fa-briefcase"></i> <b>영업문의</b> Contact Sales</h4>
+			<ul class="breadcrumbs">
+				<li class="nav-home">
+					<a href="#">
+						<i class="fas fa-home"></i>
+					</a>
+				</li>
+				<li class="separator">
+					<i class="flaticon-right-arrow"></i>
+				</li>
+				<li class="nav-item">
+					<a href="#">회원</a>
+				</li>
+				<li class="separator">
+					<i class="flaticon-right-arrow"></i>
+				</li>
+				<li class="nav-item">
+					<a href="#">영업문의</a>
+				</li>
+			</ul>
+		</div>
+		
+		<table class="table table-bordered mt-2">
+			<tbody>
+				<tr>
+					<th scope="col" width="80">상태</th>
+					<td scope="col">
+						<form id="frmSearch" name="frmSearch" class="form-inline">
+							<div class="input-group">
+							<select id="srchContactStat" name="srchContactStat" class="form-control form-control-sm select-long">
+							  
+							</select>
 							</div>
-							<div class="content">
-								<div class="table-full-width" style="height:375px;overflow-y:auto">
-									<table class="table table-bordered" id="userTable">
-										<thead>
-											<th>회원ID</th>
-											<th>E-MAIL</th>
-											<th>가입일</th>
-											<th>해지일</th>
-											<th>회원상태</th>
-											<th>정회원전환여부</th>
-											<th>정회원 전환일</th>
-											<th>고객ID</th>
-											<th>담당자</th>
-										</thead>
-										<tbody id="tblUserList">
-										<!--
-										<tr>
-											<td>bugking70</td>
-											<td>admin@gmail.com</td>
-											<td>2020-01-01</td>
-											<td>9999-12-31</td>
-											<td>활성</td>
-											<td>아니오</td>
-											<td></td>
-											<td>C20000200</td>
-											<td>홍길동</td>
-										</tr>
-										<tr>
-											<td>akstp</td>
-											<td>akstp@gmail.com</td>
-											<td>2019-01-01</td>
-											<td>9999-12-31</td>
-											<td>활성</td>
-											<td>예</td>
-											<td>2020-01-01</td>
-											<td>C10001001</td>
-											<td>홍길동</td>
-										</tr>
-										<tr>
-											<td>akstp</td>
-											<td>akstp@gmail.com</td>
-											<td>2019-01-01</td>
-											<td>9999-12-31</td>
-											<td>활성</td>
-											<td>예</td>
-											<td>2020-01-01</td>
-											<td>C10001001</td>
-											<td>홍길동</td>
-										</tr>
-										<tr>
-											<td>akstp</td>
-											<td>akstp@gmail.com</td>
-											<td>2019-01-01</td>
-											<td>9999-12-31</td>
-											<td>활성</td>
-											<td>예</td>
-											<td>2020-01-01</td>
-											<td>C10001001</td>
-											<td>홍길동</td>
-										</tr>
-										<tr>
-											<td>akstp</td>
-											<td>akstp@gmail.com</td>
-											<td>2019-01-01</td>
-											<td>9999-12-31</td>
-											<td>활성</td>
-											<td>예</td>
-											<td>2020-01-01</td>
-											<td>C10001001</td>
-											<td>홍길동</td>
-										</tr>
-										<tr>
-											<td>akstp</td>
-											<td>akstp@gmail.com</td>
-											<td>2019-01-01</td>
-											<td>9999-12-31</td>
-											<td>활성</td>
-											<td>예</td>
-											<td>2020-01-01</td>
-											<td>C10001001</td>
-											<td>홍길동</td>
-										</tr>
-										<tr>
-											<td>akstp</td>
-											<td>akstp@gmail.com</td>
-											<td>2019-01-01</td>
-											<td>9999-12-31</td>
-											<td>활성</td>
-											<td>예</td>
-											<td>2020-01-01</td>
-											<td>C10001001</td>
-											<td>홍길동</td>
-										</tr>
-										<tr>
-											<td>akstp</td>
-											<td>akstp@gmail.com</td>
-											<td>2019-01-01</td>
-											<td>9999-12-31</td>
-											<td>활성</td>
-											<td>예</td>
-											<td>2020-01-01</td>
-											<td>C10001001</td>
-											<td>홍길동</td>
-										</tr>
-										<tr>
-											<td>akstp</td>
-											<td>akstp@gmail.com</td>
-											<td>2019-01-01</td>
-											<td>9999-12-31</td>
-											<td>활성</td>
-											<td>예</td>
-											<td>2020-01-01</td>
-											<td>C10001001</td>
-											<td>홍길동</td>
-										</tr>
-										<tr>
-											<td>akstp</td>
-											<td>akstp@gmail.com</td>
-											<td>2019-01-01</td>
-											<td>9999-12-31</td>
-											<td>활성</td>
-											<td>예</td>
-											<td>2020-01-01</td>
-											<td>C10001001</td>
-											<td>홍길동</td>
-										</tr>
-										<tr>
-											<td>akstp</td>
-											<td>akstp@gmail.com</td>
-											<td>2019-01-01</td>
-											<td>9999-12-31</td>
-											<td>활성</td>
-											<td>예</td>
-											<td>2020-01-01</td>
-											<td>C10001001</td>
-											<td>홍길동</td>
-										</tr>
-										 -->
-										</tbody>
-									</table>
-								</div><!--//table-full-width-->
-								<p class="text-right btn-btm">
-									<a href="" class="btn btn-lg btn-default">&lt; 이전</a> <a href="" class="btn btn-lg btn-default">다음 &gt;</a>
-								</p>
-							</div><!--//content-->
-						</div><!--card-->
-					</div>
-				</div>
-				<!-- contents 끝 -->
-			
+							<span class="pull-right"><!-- 2021-02-19 버튼 오른쪽 정렬 -->
+							<button type="button" class="btn btn-sm btn-primary ml-2" onClick="ntcsObj.search()"><i class="fas fa-search text-white"></i> 조회</button>
+							</span>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+		<div class="page-header mt-3 mb-2">
+			<h3><i class="fas fa-phone-volume"></i> <b>영업문의 사항</b></h3>
+		</div>
+		<div class="no-row-space" style="max-height:400px;overflow-y:auto"><!-- 2021-02-04 no-row-space 클래스명 추가시 스크롤 처리 -->
+			<table class="table table-hover table-bordered" id="listTable">
+				<thead>
+					<th>요청일자</th>
+					<th>이름</th>
+					<th>이메일</th>
+					<th>핸드폰번호</th>
+					<th>전화번호</th>
+					<th>회사명</th>
+				</thead>
+				<tbody>
+				
+				<!-- 데이터가 없을 경우 ->
+				<tr>
+					<td colspan="6" class="no-data-long">데이터가 없습니다.</td>
+				</tr -->
+				</tbody>
+			</table>
+		</div><!--//table-->
+		
+		<p class="text-right mt-2">
+			<a href="#" class="btn btn-md btn-gray"><i class="fas fa-arrow-circle-left"></i> 이전</a> <a href="#" class="btn btn-md btn-gray">다음 <i class="fas fa-arrow-circle-right"></i></a>
+		</p>
+
+		<table class="table table-bordered">
+			<colgroup>
+				<col style="width:50%">
+				<col style="width:50%">
+			</colgroup>
+			<tbody>
+				<tr>
+					<th>문의사항</th>
+					<th>처리결과 (설명)</th>
+				</tr>
+				<tr>
+					<td>
+						<textarea class="question-box" rows="1" cols="1" placeholder="문의사항을 작성해주세요."></textarea>
+					</td>
+					<td><textarea class="question-box" rows="1" cols="1" placeholder="처리설명 작성해주세요."></textarea></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="btn-fl-ty">
+			<p class="text-right">
+				<a href="#" id="btnReceipt" data-toggle="modal" onClick="ntcsObj.receiptModal();" class="btn btn-lg btn-ty01">접수</a>
+			</p>
+			<p class="text-right">
+				<a href="#" id="btnProcess" data-toggle="modal" onClick="ntcsObj.processModal();" class="btn btn-lg btn-ty01">문의사항 처리</a>
+			</p>
+		</div> 
+		<!-- 모달 추가 -->
+		<%@ include file="/WEB-INF/views/member/contactsales/memberContactSalesProcessModal.jsp" %>
+		<%@ include file="/WEB-INF/views/member/contactsales/memberContactSalesReceiptModal.jsp" %>
+	</div><!--//page-inner-->
+</div>
+<script type="text/javascript" src="/resources/js/ntcs/member/contactsales/memberContactsales.js"></script>
+<!-- content 끝 -->

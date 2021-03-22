@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<head>
-<script type="text/javascript" src="/resources/js/ntcs/customer/service/customerService.js"></script>
-</head>
+
 <!-- content 시작 -->
 <div class="content">
 	<div class="page-inner">
@@ -39,11 +37,14 @@
 							<label class="mr-2 ml-2"> 판매채널 </label>
 							<input type="text" class="form-control form-control-sm" id="">		
 							<label class="mr-2 ml-2"> 고객명 </label>
-							<input type="text" class="form-control form-control-sm" id="">
+							<input type="text" id="srchCustName" name="srchCustName" class="form-control form-control-sm">
 							<label class="mr-2 ml-2"> 계약명 </label>
-							<input type="text" class="form-control form-control-sm" id="">
-							<button type="button" class="btn btn-sm btn-primary ml-3"><i class="fas fa-search text-white"></i> 조회</button>
+							<input type="text" id="srchCtrtName" name="srchCtrtName" class="form-control form-control-sm">
 						</div>
+						<span class="pull-right"><!-- 2021-02-19 버튼 오른쪽 정렬 -->	
+							<button type="button" class="btn btn-sm btn-primary ml-3" onClick="ntcsObj.search()"><i class="fas fa-search text-white"></i> 조회</button>
+						</span>
+						</form>
 					</td>
 				</tr>
 			</tbody>
@@ -54,93 +55,23 @@
 			</h3>
 		</div>
 		<div class="no-row-space" style="max-height:270px;overflow-y:auto"><!-- 2021-02-04 no-row-space 클래스명 추가시 스크롤 처리 -->
-			<div class="row">
-				<table class="table table-hover table-bordered">
-					<thead>
-						<th>계약명</th>
-						<th>상품명</th>
-						<th>상품구분</th>
-						<th>상태</th>
-						<th>서비스 시작일</th>
-					</thead>
-					<tbody>
+			<table class="table table-hover table-bordered" id="listTable">
+				<thead>
+					<th>계약명</th>
+					<th>상품명</th>
+					<th>상품구분(코드)</th>
+					<th>상품구분</th>
+					<th>상태(코드)</th>
+					<th>상태</th>
+					<th>서비스 시작일</th>
+				</thead>
+				<tbody>
+					<!-- 데이터가 없을 경우 ->
 					<tr>
-						<td>임원회의</td>
-						<td>IR-100</td>
-						<td>메인상품</td>
-						<td>사용중</td>
-						<td>2020-01-01</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-						<!-- 데이터가 없을 경우 ->
-						<tr>
-							<td colspan="5" class="no-data-cell">데이터가 없습니다.</td>
-						</tr -->
-					</tbody>
-				</table>
-			</div>
+						<td colspan="5" class="no-data-cell">데이터가 없습니다.</td>
+					</tr -->
+				</tbody>
+			</table>
 		</div><!--//table-->
 
 		<!-- p class="text-right mt-2">
@@ -170,13 +101,10 @@
 					<td class>IR-100</td>
 					<th><span class="ess-mark">*</span><!-- ess-mark 필수입력항목 스타일 -->상품상태</th>
 					<td>
-						<select class="form-control">
-						  <option>사용</option>
-						  <option>중지</option>
-						  <option>해지</option>
+						<select id="svcSttsCd" name="svcSttsCd" class="form-control required">
 						</select>
 					</td>
-					<th><span class="ess-mark">*</span><!-- ess-mark 필수입력항목 스타일 -->서비스 적용일</th>
+					<th><span class="ess-mark">*</span><!-- ess-mark 필수입력항목 스타일 -->서비스 적용일</th> <!-- 날짜 -->
 					<td>
 						<select class="form-control">
 						  <option>옵션1</option>
@@ -188,14 +116,11 @@
 				<tr>
 					<th>변경사유코드</th>
 					<td>
-						<select class="form-control">
-						  <option>신규</option>
-						  <option>불만족</option>
-						  <option>단순변심</option>
+						<select id="svcSttsChngRsnCd" name="svcSttsChngRsnCd" class="form-control">
 						</select>
 					</td>
 					<th>변경사유</th>
-					<td colspan="3"><input type="text" class="form-control no-bor" id=""><!-- 2021-01-29 border없는 input 박스 ::no-bor 클래스명 추가  --></td>
+					<td colspan="3"><input type="text" id="svcSttsChngRsnDesc" name="svcSttsChngRsnDesc" class="form-control no-bor"><!-- 2021-01-29 border없는 input 박스 ::no-bor 클래스명 추가  --></td>
 				</tr>
 			</tbody>
 		</table>
@@ -205,5 +130,6 @@
 
 	</div><!--//page-inner-->
 </div>
+<script type="text/javascript" src="/resources/js/ntcs/customer/service/customerService.js"></script>
 <!-- content 끝 -->
 		
